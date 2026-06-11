@@ -652,6 +652,11 @@
       var guideMarginBottom = parseFloat(guideStyles.marginBottom) || 0;
       var pageTop = page ? page.getBoundingClientRect().top : 0;
       var guideTop = guideRect.top - pageTop;
+      var result = document.getElementById("rk-result");
+      var resultIsVisible = !!(result && result.style.display === "block");
+      var safetySpace = resultIsVisible
+        ? (window.innerWidth <= 700 ? 260 : 320)
+        : (window.innerWidth <= 700 ? 72 : 96);
 
       // Mät bara guidens faktiska innehåll. body/document scrollHeight kan fastna på en tidigare iframe-höjd i NXT.
       var height = Math.ceil(
@@ -661,7 +666,7 @@
         guideMarginTop +
         guideRect.height +
         guideMarginBottom +
-        (window.innerWidth <= 700 ? 72 : 96)
+        safetySpace
       );
 
       if (height < 120) height = 120;
@@ -2229,6 +2234,7 @@
   </script>
 </body>
 </html>
+
 
 
 
