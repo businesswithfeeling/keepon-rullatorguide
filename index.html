@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rullatorguiden | Keepon v17</title>
+  <title>Rullatorguiden | Keepon v18</title>
   <meta name="robots" content="noindex, nofollow">
   <style>
     :root {
@@ -459,7 +459,7 @@
     }
 
     #rk-page {
-      padding: 0 14px 28px;
+      padding: 0 14px 6px;
     }
 
     .rk-guide {
@@ -485,7 +485,7 @@
 
     @media (max-width: 520px) {
       #rk-page {
-        padding: 0 8px 18px;
+        padding: 0 8px 6px;
       }
 
       .rk-guide {
@@ -641,38 +641,53 @@
     function rkSendHeightToParent() {
       var page = document.getElementById("rk-page");
       var guide = document.getElementById("rk-guide");
+      if (!guide) return;
 
-      var heights = [
-        document.body ? document.body.scrollHeight : 0,
-        document.documentElement ? document.documentElement.scrollHeight : 0,
-        page ? page.scrollHeight : 0,
-        page ? page.offsetHeight : 0,
-        guide ? guide.scrollHeight : 0,
-        guide ? guide.offsetHeight : 0
-      ];
+      var guideRect = guide.getBoundingClientRect();
+      var pageStyles = page ? window.getComputedStyle(page) : null;
+      var guideStyles = window.getComputedStyle(guide);
+      var pagePaddingTop = pageStyles ? parseFloat(pageStyles.paddingTop) || 0 : 0;
+      var pagePaddingBottom = pageStyles ? parseFloat(pageStyles.paddingBottom) || 0 : 0;
+      var guideMarginTop = parseFloat(guideStyles.marginTop) || 0;
+      var guideMarginBottom = parseFloat(guideStyles.marginBottom) || 0;
+      var pageTop = page ? page.getBoundingClientRect().top : 0;
+      var guideTop = guideRect.top - pageTop;
 
-      var height = Math.max.apply(null, heights);
+      // Mät bara guidens faktiska innehåll. body/document scrollHeight kan fastna på en tidigare iframe-höjd i NXT.
+      var height = Math.ceil(
+        pagePaddingTop +
+        pagePaddingBottom +
+        guideTop +
+        guideMarginTop +
+        guideRect.height +
+        guideMarginBottom +
+        8
+      );
 
-      if (window.innerWidth <= 700) {
-        height += 56;
-      } else {
-        height += 32;
-      }
+      if (height < 120) height = 120;
+
+      try {
+        document.documentElement.style.minHeight = "0";
+        document.body.style.minHeight = "0";
+        document.body.style.height = height + "px";
+      } catch (e) {}
 
       try {
         window.parent.postMessage({ type: "rk-guide-height", height: height }, "*");
         window.parent.postMessage("rk-guide-height:" + height, "*");
         window.parent.postMessage({ type: "rkGuideHeight", height: height }, "*");
+        window.parent.postMessage({ type: "rk-guide-resize", height: height }, "*");
       } catch (e) {}
     }
 
     function rkQueueHeightUpdate() {
       if (typeof rkSendHeightToParent === "function") {
-        setTimeout(rkSendHeightToParent, 40);
-        setTimeout(rkSendHeightToParent, 120);
-        setTimeout(rkSendHeightToParent, 250);
-        setTimeout(rkSendHeightToParent, 500);
-        setTimeout(rkSendHeightToParent, 1000);
+        rkSendHeightToParent();
+        setTimeout(rkSendHeightToParent, 30);
+        setTimeout(rkSendHeightToParent, 90);
+        setTimeout(rkSendHeightToParent, 180);
+        setTimeout(rkSendHeightToParent, 360);
+        setTimeout(rkSendHeightToParent, 800);
       }
     }
 
@@ -2214,6 +2229,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
