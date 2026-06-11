@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rullatorguiden | Keepon v12</title>
+  <title>Rullatorguiden | Keepon v13</title>
   <meta name="robots" content="noindex, nofollow">
   <style>
     :root {
@@ -1920,6 +1920,24 @@
       return score;
     }
 
+    function rkIsTrustCare(product) {
+      return !!(product && product.name && product.name.toLowerCase().indexOf("trust care") > -1);
+    }
+
+    function rkCompareProducts(a, b) {
+      var scoreDiff = b.score - a.score;
+
+      // Grundregel: bästa matchningen vinner.
+      // Trust Care prioriteras bara när matchningen är i princip likvärdig, inte när en annan modell är tydligt bättre.
+      if (Math.abs(scoreDiff) <= 2) {
+        var trustDiff = (rkIsTrustCare(b) ? 1 : 0) - (rkIsTrustCare(a) ? 1 : 0);
+        if (trustDiff !== 0) return trustDiff;
+      }
+
+      if (scoreDiff !== 0) return scoreDiff;
+      return (b.rankBias || 0) - (a.rankBias || 0);
+    }
+
     function rkShowResult() {
       rkHideAllSteps();
 
@@ -1936,34 +1954,26 @@
           copy.score = rkScoreProduct(product);
           return copy;
         })
-        .sort(function(a, b) { return b.score - a.score; });
+        .sort(rkCompareProducts);
 
-      // Välj flera olika produktfamiljer. De två första är huvudrekommendationer,
-      // och därefter visas fler bra alternativ så att fler inlästa modeller faktiskt kan synas.
-      var ranked = [];
+      // Välj exakt två olika produktfamiljer. Det gör att kunden inte får två färger av samma modell.
+      // Färgvariant inom samma familj väljs utifrån högst matchscore/rankBias.
+      var primary = [];
       var usedFamilies = {};
       for (var i = 0; i < rankedAll.length; i++) {
         var product = rankedAll[i];
         var family = product.family || product.name;
         if (usedFamilies[family]) continue;
         usedFamilies[family] = true;
-        ranked.push(product);
-        if (ranked.length === 5) break;
+        primary.push(product);
+        if (primary.length === 2) break;
       }
-
-      var primary = ranked.slice(0, 2);
-      var alternatives = ranked.slice(2, 5);
 
       document.getElementById("rk-result-content").innerHTML =
         '<h3>Vi tror att dessa två rullatorer passar dig bäst</h3>' +
-        '<p class="rk-result-lead">Baserat på dina svar har vi valt ut två huvudrekommendationer. Under dem visar vi även fler modeller som kan passa, så att du inte bara ser samma få produkter varje gång.</p>' +
+        '<p class="rk-result-lead">Baserat på dina svar visar vi endast de två modeller som matchar bäst. Om två alternativ är i princip likvärdiga prioriteras Trust Care, men bara då.</p>' +
         '<div class="rk-product-grid">' +
         primary.map(rkProductCard).join("") +
-        '</div>' +
-        '<h3 class="rk-more-title">Fler bra alternativ</h3>' +
-        '<p class="rk-result-lead rk-result-lead--small">De här modellerna matchar också dina svar, men är något mer specialiserade, tyngre, enklare eller mer premium beroende på dina val.</p>' +
-        '<div class="rk-product-grid rk-product-grid--more">' +
-        alternatives.map(rkProductCard).join("") +
         '</div>' +
         '<div class="rk-advice"><strong>Vill du vara helt säker?</strong><br>Kom gärna in till Keepon och prova rullatorn. Vid Parkinson, gångträning, rullstolskombination eller mycket specifika behov rekommenderar vi personlig rådgivning.</div>' +
         '<div class="rk-result-actions">' +
@@ -2071,15 +2081,4 @@
         childList: true,
         subtree: true,
         attributes: true,
-        characterData: true
-      });
-    }
-
-    setInterval(function() {
-      rkQueueHeightUpdate();
-    }, 1500);
-
-    rkQueueHeightUpdate();
-  </script>
-</body>
-</html>
+        characterData
