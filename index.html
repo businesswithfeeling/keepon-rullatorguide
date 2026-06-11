@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="sv">
 <head>
   <meta charset="utf-8">
@@ -579,7 +579,7 @@
 <body>
   <main id="rk-page">
     <section id="rk-guide" class="rk-guide">
-      <h2>Rullatorguiden – 6 enkla steg</h2>
+      <h2>Rullatorguiden - 6 enkla steg</h2>
       <p class="rk-guide-intro">Klicka på det alternativ som passar dig bäst.</p>
       <div id="rk-progress" class="rk-progress">Steg 1 av 6</div>
 
@@ -1752,6 +1752,46 @@
             "rankBias": 2
       },
       {
+            "name": "Mobilex - DynaWalk gångtränare med handbroms",
+            "family": "dynawalk",
+            "tags": ["inside", "outside", "stable", "functional", "safety", "specialist", "gaittrainer"],
+            "price": "9 999 SEK",
+            "link": "https://keepon.se/produkt/Mobilex-DynaWalk-gangtranare-med-handbroms",
+            "benefits": ["Gångtränare med handbroms", "För extra stöd vid gångträning", "Bör väljas med personlig rådgivning"],
+            "image": "https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoicHJvZHVjdF9pbWFnZXNcLzg0NTAzXzY5ZjBhZDAxY2E5ZmUuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjoyNTAsImhlaWdodCI6MjUwLCJmaXQiOiJpbnNpZGUifX19",
+            "rankBias": -10
+      },
+      {
+            "name": "Gemino - Gemino 30 Walker, silvergrå",
+            "family": "gemino-30-walker",
+            "tags": ["outside", "stable", "functional", "safety", "premium", "seat", "specialist", "walker"],
+            "price": "10 599 SEK",
+            "link": "https://keepon.se/produkt/Gemino-Gemino-30-Walker-Silvergra",
+            "benefits": ["Walker-modell för mer stöd", "Stabil och funktionell utomhus", "För behov som kräver extra rådgivning"],
+            "image": "https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoicHJvZHVjdF9pbWFnZXNcLzI0NDE3XzYuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjoyNTAsImhlaWdodCI6MjUwLCJmaXQiOiJpbnNpZGUifX19",
+            "rankBias": -8
+      },
+      {
+            "name": "Gemino - Gemino 60 Walker, silvergrå",
+            "family": "gemino-60-walker",
+            "tags": ["outside", "stable", "functional", "safety", "rough", "premium", "seat", "specialist", "walker"],
+            "price": "11 599 SEK",
+            "link": "https://keepon.se/produkt/Gemino-Gemino-60-Walker-Utomhusrullator-Silvergra",
+            "benefits": ["Walker-modell med extra stabil känsla", "Passar större utomhusbehov", "Bör provas med personlig rådgivning"],
+            "image": "https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoicHJvZHVjdF9pbWFnZXNcLzI0NDE3XzYuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjoyNTAsImhlaWdodCI6MjUwLCJmaXQiOiJpbnNpZGUifX19",
+            "rankBias": -9
+      },
+      {
+            "name": "Mobilex - Bison gåbord",
+            "family": "bison",
+            "tags": ["inside", "stable", "functional", "safety", "specialist", "walkingtable"],
+            "price": "12 499 SEK",
+            "link": "https://keepon.se/produkt/Mobilex-Bison-gabord",
+            "benefits": ["Gåbord för mycket stabilt stöd", "För inomhus och vårdnära behov", "Bör väljas med personlig rådgivning"],
+            "image": "https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoicHJvZHVjdF9pbWFnZXNcLzg0NTAzXzY5ZjBhZDAxY2E5ZmUuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjoyNTAsImhlaWdodCI6MjUwLCJmaXQiOiJpbnNpZGUifX19",
+            "rankBias": -12
+      },
+      {
             "name": "Rollz Motion² rollator och rullstol i ett, Matt Black",
             "family": "rollz-motion",
             "tags": [
@@ -1925,8 +1965,39 @@
         if (has("safety")) score += 4;
       }
 
-      // Specialistprodukter ska inte dominera en generell guide utan särskild medicinsk fråga.
-      if (has("specialist")) score -= 28;
+      if (has("gaittrainer")) {
+        if (rkAnswers.priority === "stable") score += 10;
+        if (rkAnswers.design === "functional") score += 8;
+        if (rkAnswers.car === "rarely") score += 4;
+      }
+
+      if (has("walker")) {
+        if (rkAnswers.priority === "stable") score += 8;
+        if (rkAnswers.seat === "yes") score += 4;
+        if (rkAnswers.design === "functional") score += 6;
+      }
+
+      if (has("walkingtable")) {
+        if (rkAnswers.use === "inside") score += 8;
+        if (rkAnswers.priority === "stable") score += 12;
+        if (rkAnswers.design === "functional") score += 8;
+        if (rkAnswers.car === "often") score -= 10;
+      }
+
+      if (has("wheelchair")) {
+        if (rkAnswers.priority === "stable") score += 7;
+        if (rkAnswers.seat === "yes") score += 6;
+        if (rkAnswers.design === "functional") score += 5;
+      }
+
+      if (has("parkinson")) {
+        if (rkAnswers.priority === "stable") score += 8;
+        if (rkAnswers.design === "functional") score += 8;
+        if (rkAnswers.car === "rarely") score += 3;
+      }
+
+      // Specialistprodukter kan rekommenderas, men ska inte slå ut vanliga rullatorer utan tydlig funktionsmatchning.
+      if (has("specialist")) score -= 14;
 
       return score;
     }
@@ -1937,16 +2008,16 @@
 
     function rkCompareProducts(a, b) {
       var scoreDiff = b.score - a.score;
-
-      // Grundregel: bästa matchningen vinner.
-      // Trust Care prioriteras bara när matchningen är i princip likvärdig, inte när en annan modell är tydligt bättre.
-      if (Math.abs(scoreDiff) <= 2) {
-        var trustDiff = (rkIsTrustCare(b) ? 1 : 0) - (rkIsTrustCare(a) ? 1 : 0);
-        if (trustDiff !== 0) return trustDiff;
-      }
-
       if (scoreDiff !== 0) return scoreDiff;
-      return (b.rankBias || 0) - (a.rankBias || 0);
+
+      var rankDiff = (b.rankBias || 0) - (a.rankBias || 0);
+      if (rankDiff !== 0) return rankDiff;
+
+      // Om både betyg och intern prioritet är exakt lika prioriteras Trust Care.
+      var trustDiff = (rkIsTrustCare(b) ? 1 : 0) - (rkIsTrustCare(a) ? 1 : 0);
+      if (trustDiff !== 0) return trustDiff;
+
+      return a.name.localeCompare(b.name, "sv");
     }
 
     function rkShowResult() {
@@ -1982,7 +2053,7 @@
 
       document.getElementById("rk-result-content").innerHTML =
         '<h3>Vi tror att dessa två rullatorer passar dig bäst</h3>' +
-        '<p class="rk-result-lead">Baserat på dina svar visar vi endast de två modeller som matchar bäst. Om två alternativ är i princip likvärdiga prioriteras Trust Care, men bara då.</p>' +
+        '<p class="rk-result-lead">Baserat på dina svar visar vi de två modeller som matchar bäst. Om två alternativ har exakt samma betyg och intern prioritet går Trust Care före.</p>' +
         '<div class="rk-product-grid">' +
         primary.map(rkProductCard).join("") +
         '</div>' +
@@ -2143,3 +2214,8 @@
   </script>
 </body>
 </html>
+
+
+
+
+
