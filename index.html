@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rullatorguiden | Keepon v18</title>
+  <title>Rullatorguiden | Keepon v17</title>
   <meta name="robots" content="noindex, nofollow">
   <style>
     :root {
@@ -661,7 +661,7 @@
         guideMarginTop +
         guideRect.height +
         guideMarginBottom +
-        8
+        (window.innerWidth <= 700 ? 72 : 96)
       );
 
       if (height < 120) height = 120;
@@ -2229,6 +2229,7 @@
   </script>
 </body>
 </html>
+
 
 
 
