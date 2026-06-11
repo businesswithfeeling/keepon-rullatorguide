@@ -664,5 +664,43 @@
     });
   
   </script>
+
+  1. Lägg in detta längst ner i GitHub-filens index.html, precis före </body>
+<script>
+  function rkSendHeightToParent() {
+    var height = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight
+    );
+
+    window.parent.postMessage(
+      {
+        type: "rkGuideHeight",
+        height: height + 20
+      },
+      "*"
+    );
+  }
+
+  window.addEventListener("load", rkSendHeightToParent);
+  window.addEventListener("resize", rkSendHeightToParent);
+
+  if ("ResizeObserver" in window) {
+    var rkResizeObserver = new ResizeObserver(function () {
+      rkSendHeightToParent();
+    });
+
+    rkResizeObserver.observe(document.body);
+  }
+
+  var rkMutationObserver = new MutationObserver(function () {
+    setTimeout(rkSendHeightToParent, 100);
+  });
+
+  rkMutationObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true
+  });
 </body>
 </html>
