@@ -442,6 +442,61 @@
       }
     }
   
+    /* Extra compact mobile iframe result */
+
+    @media (max-width: 520px) {
+      #rk-page {
+        padding: 0 8px 16px;
+      }
+
+      .rk-guide {
+        padding: 22px 10px 24px;
+      }
+
+      .rk-guide h2 {
+        font-size: 26px;
+      }
+
+      .rk-guide-intro {
+        font-size: 15px;
+      }
+
+      .rk-progress {
+        font-size: 16px;
+        margin: 14px 0 18px;
+      }
+
+      .rk-result {
+        padding: 18px 12px;
+      }
+
+      .rk-result h3 {
+        font-size: 22px;
+      }
+
+      .rk-result-lead {
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+
+      .rk-product-card {
+        padding: 16px;
+      }
+
+      .rk-product-card img {
+        height: 170px;
+      }
+
+      .rk-product-card h4 {
+        font-size: 18px;
+      }
+
+      .rk-advice {
+        padding: 14px;
+        font-size: 14px;
+      }
+    }
+
     /* GitHub/iframe-version: only guide module, no hero/FAQ/trust section */
     body {
       background: transparent;
@@ -525,10 +580,52 @@
   </main>
 
   <script>
+
+    function rkSendHeightToParent() {
+      var page = document.getElementById("rk-page");
+      var guide = document.getElementById("rk-guide");
+
+      var heights = [
+        document.body ? document.body.scrollHeight : 0,
+        document.documentElement ? document.documentElement.scrollHeight : 0,
+        page ? page.scrollHeight : 0,
+        page ? page.offsetHeight : 0,
+        guide ? guide.scrollHeight : 0,
+        guide ? guide.offsetHeight : 0
+      ];
+
+      var height = Math.max.apply(null, heights) + 24;
+
+      try {
+        window.parent.postMessage(
+          {
+            type: "rk-guide-height",
+            height: height
+          },
+          "*"
+        );
+
+        window.parent.postMessage(
+          "rk-guide-height:" + height,
+          "*"
+        );
+
+        window.parent.postMessage(
+          {
+            type: "rkGuideHeight",
+            height: height
+          },
+          "*"
+        );
+      } catch (e) {}
+    }
+
     function rkQueueHeightUpdate() {
       if (typeof rkSendHeightToParent === "function") {
-        setTimeout(rkSendHeightToParent, 80);
-        setTimeout(rkSendHeightToParent, 250);
+        setTimeout(rkSendHeightToParent, 50);
+        setTimeout(rkSendHeightToParent, 150);
+        setTimeout(rkSendHeightToParent, 350);
+        setTimeout(rkSendHeightToParent, 800);
       }
     }
 
@@ -736,6 +833,39 @@
       }
     });
   
+
+    window.addEventListener("load", function() {
+      rkQueueHeightUpdate();
+    });
+
+    window.addEventListener("resize", function() {
+      rkQueueHeightUpdate();
+    });
+
+    if ("ResizeObserver" in window) {
+      var rkResizeObserver = new ResizeObserver(function() {
+        rkQueueHeightUpdate();
+      });
+
+      rkResizeObserver.observe(document.body);
+    }
+
+    if ("MutationObserver" in window) {
+      var rkMutationObserver = new MutationObserver(function() {
+        rkQueueHeightUpdate();
+      });
+
+      rkMutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true
+      });
+    }
+
+    setInterval(function() {
+      rkQueueHeightUpdate();
+    }, 1200);
+
   </script>
 </body>
 </html>
