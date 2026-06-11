@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rullatorguiden | Keepon</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --rk-green: #174f35;
+      --rk-deep: #173d2b;
+      --rk-text: #24322b;
+      --rk-soft: #f7f8f3;
+      --rk-line: #e2e8dc;
+      --rk-cream: #fffdf8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--rk-text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #rk-page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 14px 32px;
+    }
+
+    .rk-hero {
+      position: relative;
+      width: 100%;
+      margin: 28px 0 36px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #f7f4ee;
+    }
+
+    .rk-hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .rk-hero-actions {
+      position: absolute;
+      left: 3.8%;
+      bottom: 21.5%;
+      z-index: 5;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .rk-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 8px;
+      border: 2px solid var(--rk-green);
+      background: var(--rk-green);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .rk-button--secondary {
+      background: #fff;
+      color: var(--rk-green);
+    }
+
+    .rk-guide {
+      margin: 38px 0;
+      padding: 34px 26px 38px;
+      border: 1px solid #e5eadf;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #f6f8f1, var(--rk-cream));
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.05);
+    }
+
+    .rk-guide h2 {
+      margin: 0 0 8px;
+      color: var(--rk-deep);
+      font-size: 34px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .rk-guide-intro {
+      margin: 0 0 18px;
+      font-size: 17px;
+      text-align: center;
+    }
+
+    .rk-progress {
+      margin: 18px 0 22px;
+      color: var(--rk-green);
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .rk-step-card {
+      position: relative;
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 26px;
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+    }
+
+    .rk-step-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .rk-choice {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .rk-choice:first-of-type {
+      left: 0;
+    }
+
+    .rk-choice:last-of-type {
+      right: 0;
+    }
+
+    .rk-choice:focus-visible {
+      outline: 4px solid #f2c94c;
+      outline-offset: -8px;
+    }
+
+    .rk-result {
+      display: none;
+      margin-top: 10px;
+      padding: 30px;
+      border-radius: 26px;
+      background: #fff;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    .rk-result h3 {
+      margin: 0 0 10px;
+      color: var(--rk-deep);
+      font-size: 30px;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .rk-result-lead {
+      max-width: 760px;
+      margin: 0 auto 24px;
+      font-size: 17px;
+      text-align: center;
+    }
+
+    .rk-product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 24px;
+    }
+
+    .rk-product-card {
+      padding: 22px;
+      border: 1px solid #dfe8e2;
+      border-radius: 22px;
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+    }
+
+    .rk-product-card img {
+      width: 100%;
+      height: 230px;
+      margin-bottom: 16px;
+      object-fit: contain;
+      border-radius: 18px;
+      background: #f6f6f6;
+    }
+
+    .rk-product-card h4 {
+      margin: 0 0 8px;
+      color: var(--rk-deep);
+      font-size: 23px;
+      line-height: 1.25;
+    }
+
+    .rk-product-card ul {
+      padding-left: 20px;
+    }
+
+    .rk-advice {
+      margin-top: 22px;
+      padding: 18px;
+      border-left: 5px solid var(--rk-green);
+      border-radius: 14px;
+      background: #eef6f0;
+    }
+
+    .rk-result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .rk-trust {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin: 34px 0;
+      padding: 22px;
+      border: 1px solid var(--rk-line);
+      border-radius: 22px;
+      background: var(--rk-soft);
+    }
+
+    .rk-trust strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--rk-deep);
+      font-size: 16px;
+    }
+
+    .rk-trust p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .rk-help {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 24px;
+      margin: 34px 0;
+    }
+
+    .rk-panel {
+      padding: 28px;
+      border: 1px solid #e5eadf;
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
+    }
+
+    .rk-panel h3 {
+      margin: 0 0 18px;
+      color: var(--rk-deep);
+      font-size: 26px;
+      line-height: 1.25;
+    }
+
+    .rk-faq-item {
+      margin-bottom: 10px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: var(--rk-soft);
+    }
+
+    .rk-contact {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .rk-contact img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 820px) {
+      #rk-page {
+        padding: 0 10px 24px;
+      }
+
+      .rk-hero,
+      .rk-guide,
+      .rk-trust,
+      .rk-help {
+        margin-top: 18px;
+        margin-bottom: 24px;
+      }
+
+      .rk-hero {
+        border-radius: 16px;
+      }
+
+      .rk-hero-actions {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        gap: 8px;
+      }
+
+      .rk-button {
+        min-height: 46px;
+        padding: 12px 14px;
+        font-size: 14px;
+      }
+
+      .rk-guide {
+        padding: 24px 12px 26px;
+        border-radius: 18px;
+      }
+
+      .rk-guide h2 {
+        font-size: 27px;
+      }
+
+      .rk-step-card,
+      .rk-result,
+      .rk-product-card,
+      .rk-panel {
+        border-radius: 16px;
+      }
+
+      .rk-result {
+        padding: 20px 14px;
+      }
+
+      .rk-result h3 {
+        font-size: 24px;
+      }
+
+      .rk-product-grid,
+      .rk-trust,
+      .rk-help {
+        grid-template-columns: 1fr;
+      }
+
+      .rk-trust {
+        padding: 18px;
+      }
+
+      .rk-contact img {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .rk-hero-actions {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 12px;
+        background: #f7f4ee;
+      }
+
+      .rk-hero img {
+        min-height: 230px;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .rk-product-card img {
+        height: 190px;
+      }
+    }
+  
+    /* GitHub/iframe-version: only guide module, no hero/FAQ/trust section */
+    body {
+      background: transparent;
+    }
+
+    #rk-page {
+      padding: 0 14px 28px;
+    }
+
+    .rk-guide {
+      margin: 0;
+    }
+
+    @media (max-width: 820px) {
+      .rk-guide {
+        margin: 0;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <main id="rk-page">
+    <section id="rk-guide" class="rk-guide">
+      <h2>Rullatorguiden – 6 enkla steg</h2>
+      <p class="rk-guide-intro">Klicka på det alternativ som passar dig bäst.</p>
+      <div id="rk-progress" class="rk-progress">Steg 1 av 6</div>
+
+      <div id="rk-step1" class="rk-step">
+        <div class="rk-step-card">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTEuanBnIn0" alt="Hemma eller utomhus">
+          <button class="rk-choice" type="button" data-key="use" data-value="inside" aria-label="Hemma"></button>
+          <button class="rk-choice" type="button" data-key="use" data-value="outside" aria-label="Utomhus"></button>
+        </div>
+      </div>
+
+      <div id="rk-step2" class="rk-step" hidden>
+        <div class="rk-step-card">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTIuanBnIn0=" alt="Låg vikt eller extra stabilitet">
+          <button class="rk-choice" type="button" data-key="priority" data-value="light" aria-label="Låg vikt"></button>
+          <button class="rk-choice" type="button" data-key="priority" data-value="stable" aria-label="Extra stabilitet"></button>
+        </div>
+      </div>
+
+      <div id="rk-step3" class="rk-step" hidden>
+        <div class="rk-step-card">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTMuanBnIn0=" alt="Jämnt eller ojämnt underlag">
+          <button class="rk-choice" type="button" data-key="surface" data-value="smooth" aria-label="Jämnt underlag"></button>
+          <button class="rk-choice" type="button" data-key="surface" data-value="rough" aria-label="Ojämnt underlag"></button>
+        </div>
+      </div>
+
+      <div id="rk-step4" class="rk-step" hidden>
+        <div class="rk-step-card">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTQuanBnIn0=" alt="Ta med i bil eller använda i närområdet">
+          <button class="rk-choice" type="button" data-key="car" data-value="often" aria-label="Ja ofta"></button>
+          <button class="rk-choice" type="button" data-key="car" data-value="rarely" aria-label="Sällan eller aldrig"></button>
+        </div>
+      </div>
+
+      <div id="rk-step5" class="rk-step" hidden>
+        <div class="rk-step-card">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTUuanBnIn0=" alt="Paus under promenaden">
+          <button class="rk-choice" type="button" data-key="seat" data-value="no" aria-label="Nej inte viktigt"></button>
+          <button class="rk-choice" type="button" data-key="seat" data-value="yes" aria-label="Ja viktigt"></button>
+        </div>
+      </div>
+
+      <div id="rk-step6" class="rk-step" hidden>
+        <div class="rk-step-card">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTYuanBnIn0=" alt="Modern design eller funktion först">
+          <button class="rk-choice" type="button" data-key="design" data-value="modern" aria-label="Modern design"></button>
+          <button class="rk-choice" type="button" data-key="design" data-value="functional" aria-label="Funktion först"></button>
+        </div>
+      </div>
+
+      <div id="rk-result" class="rk-result">
+        <div id="rk-result-content"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    var rkAnswers = {};
+    var rkCurrentStep = 1;
+
+    var rkProducts = [
+      {
+        name: "Trust Care - Let's Go inomhusrullator",
+        tags: ["inside", "light", "design", "smooth"],
+        price: "2 695 SEK",
+        image: "https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoicHJvZHVjdF9pbWFnZXNcLzU3MDAwXzEuSlBHIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjoyNTAsImhlaWdodCI6MjUwLCJmaXQiOiJpbnNpZGUifX19",
+        link: "https://keepon.se/produkt/Trust-Care-Let-s-Go-inomhusrullator-tramonstrad-sv",
+        benefits: ["Smidig inomhus", "Snygg och möbellik känsla", "Bra för hemmet och jämna ytor"]
+      },
+      {
+        name: "Trust Care - Let's Fly",
+        tags: ["outside", "light", "design", "car"],
+        price: "4 495 SEK",
+        image: "https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoicHJvZHVjdF9pbWFnZXNcLzU3MDA3XzYwOTM4NjIyZGUzNTAuSlBHIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjoyNTAsImhlaWdodCI6MjUwLCJmaXQiOiJpbnNpZGUifX19",
+        link: "https://keepon.se/produkt/Trust-Care-Let-s-Fly-Utomhusrullator-Gra",
+        benefits: ["Lätt och elegant", "Enkel att ta med", "Passar dig som vill ha snygg design"]
+      },
+      {
+        name: "Gemino 30",
+        tags: ["outside", "stable", "premium", "functional", "seat"],
+        price: "5 599 SEK",
+        image: "https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoicHJvZHVjdF9pbWFnZXNcLzI0NDE3XzYuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjoyNTAsImhlaWdodCI6MjUwLCJmaXQiOiJpbnNpZGUifX19",
+        link: "https://keepon.se/produkt/Gemino-Gemino-30-SpeedControl-Utomhusrullator-Silvergra",
+        benefits: ["Stabil premiumrullator", "Trygg för daglig användning", "Bra allroundval utomhus"]
+      },
+      {
+        name: "Saljol - Allround med stora hjul",
+        tags: ["outside", "rough", "largewheels", "stable", "functional", "seat"],
+        price: "5 999 SEK",
+        image: "https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoicHJvZHVjdF9pbWFnZXNcLzYwMjE3MF82YTBjNWQ2MDQ0YWM1LmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MjUwLCJoZWlnaHQiOjI1MCwiZml0IjoiaW5zaWRlIn19fQ==",
+        link: "https://keepon.se/produkt/saljol-allround-utomhusrullator-forest-green",
+        benefits: ["Stora hjul", "Bra på ojämnt underlag", "Trygg och terränggående känsla"]
+      },
+      {
+        name: "ByACRE - Carbon Ultralight",
+        tags: ["outside", "light", "design", "car", "premium"],
+        price: "6 599 SEK",
+        image: "https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoicHJvZHVjdF9pbWFnZXNcLzg0NTAzXzY5ZjBhZDAxY2E5ZmUuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjoyNTAsImhlaWdodCI6MjUwLCJmaXQiOiJpbnNpZGUifX19",
+        link: "https://keepon.se/produkt/ByACRE-Carbon-Ultralight-utomhusrullator",
+        benefits: ["Mycket lätt kolfiberrullator", "Premiumdesign", "Enkel att ta med i bil"]
+      },
+      {
+        name: "ByACRE - Carbon Overland",
+        tags: ["outside", "rough", "largewheels", "design", "premium", "stable", "seat"],
+        price: "7 990 SEK",
+        image: "https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoicHJvZHVjdF9pbWFnZXNcLzg0NTExXzY5ZjFhYjU4MTIyODMuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjoyNTAsImhlaWdodCI6MjUwLCJmaXQiOiJpbnNpZGUifX19",
+        link: "https://keepon.se/produkt/utomhusrullator-rullator-byacre-carbon-overland-utomhusrullator",
+        benefits: ["För ojämnare underlag", "Stora hjul och premiumkänsla", "Modern terrängrullator"]
+      }
+    ];
+
+    function rkHideAllSteps() {
+      for (var i = 1; i <= 6; i++) {
+        var step = document.getElementById("rk-step" + i);
+        if (step) step.hidden = true;
+      }
+
+      var result = document.getElementById("rk-result");
+      if (result) result.style.display = "none";
+    }
+
+    function rkShowStep(stepNumber) {
+      rkHideAllSteps();
+      rkCurrentStep = stepNumber;
+
+      var step = document.getElementById("rk-step" + stepNumber);
+      if (step) step.hidden = false;
+
+      var progress = document.getElementById("rk-progress");
+      if (progress) progress.innerText = "Steg " + stepNumber + " av 6";
+
+      var guide = document.getElementById("rk-guide");
+      if (guide) guide.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function rkSaveAnswer(key, value) {
+      rkAnswers[key] = value;
+
+      if (rkCurrentStep < 6) {
+        rkShowStep(rkCurrentStep + 1);
+      } else {
+        rkShowResult();
+      }
+    }
+
+    function rkScoreProduct(product) {
+      var score = 0;
+
+      if (rkAnswers.use === "inside" && product.tags.indexOf("inside") > -1) score += 6;
+      if (rkAnswers.use === "outside" && product.tags.indexOf("outside") > -1) score += 6;
+
+      if (rkAnswers.priority === "light" && product.tags.indexOf("light") > -1) score += 5;
+      if (rkAnswers.priority === "stable" && product.tags.indexOf("stable") > -1) score += 5;
+
+      if (rkAnswers.surface === "smooth" && product.tags.indexOf("smooth") > -1) score += 3;
+      if (rkAnswers.surface === "rough" && product.tags.indexOf("rough") > -1) score += 6;
+      if (rkAnswers.surface === "rough" && product.tags.indexOf("largewheels") > -1) score += 5;
+
+      if (rkAnswers.car === "often" && product.tags.indexOf("car") > -1) score += 5;
+      if (rkAnswers.car === "often" && product.tags.indexOf("light") > -1) score += 3;
+
+      if (rkAnswers.seat === "yes" && product.tags.indexOf("seat") > -1) score += 5;
+      if (rkAnswers.design === "modern" && product.tags.indexOf("design") > -1) score += 6;
+      if (rkAnswers.design === "functional" && product.tags.indexOf("functional") > -1) score += 5;
+      if (rkAnswers.design === "functional" && product.tags.indexOf("stable") > -1) score += 3;
+
+      return score;
+    }
+
+    function rkShowResult() {
+      rkHideAllSteps();
+
+      var result = document.getElementById("rk-result");
+      if (result) result.style.display = "block";
+
+      var progress = document.getElementById("rk-progress");
+      if (progress) progress.innerText = "Din rekommendation";
+
+      var ranked = rkProducts
+        .map(function(product) {
+          var copy = {};
+          for (var key in product) copy[key] = product[key];
+          copy.score = rkScoreProduct(product);
+          return copy;
+        })
+        .sort(function(a, b) { return b.score - a.score; })
+        .slice(0, 2);
+
+      document.getElementById("rk-result-content").innerHTML =
+        '<h3>Vi tror att dessa två rullatorer passar dig bäst</h3>' +
+        '<p class="rk-result-lead">Baserat på dina svar har vi valt ut två modeller som matchar din vardag och dina behov.</p>' +
+        '<div class="rk-product-grid">' +
+        ranked.map(rkProductCard).join("") +
+        '</div>' +
+        '<div class="rk-advice"><strong>Vill du vara helt säker?</strong><br>Kom gärna in till Keepon och prova rullatorn.</div>' +
+        '<div class="rk-result-actions">' +
+        '<a class="rk-button" href="https://keepon.se/kategori/rullator-ganghjalpmedel" target="_top">Se alla rullatorer</a>' +
+        '<a class="rk-button rk-button--secondary" href="https://keepon.se/kontakt" target="_top">Få personlig hjälp</a>' +
+        '<button class="rk-button rk-button--secondary" type="button" data-rk-restart="true">Gör guiden igen</button>' +
+        '</div>';
+
+      var guide = document.getElementById("rk-guide");
+      if (guide) guide.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function rkProductCard(product) {
+      return (
+        '<article class="rk-product-card">' +
+          '<img src="' + product.image + '" alt="' + product.name + '">' +
+          '<h4>' + product.name + '</h4>' +
+          '<p><strong>' + product.price + '</strong></p>' +
+          '<ul>' +
+            '<li>' + product.benefits[0] + '</li>' +
+            '<li>' + product.benefits[1] + '</li>' +
+            '<li>' + product.benefits[2] + '</li>' +
+          '</ul>' +
+          '<a class="rk-button" href="' + product.link + '" target="_top">Se produkt</a>' +
+        '</article>'
+      );
+    }
+
+    function rkRestartGuide() {
+      rkAnswers = {};
+      rkShowStep(1);
+    }
+
+    document.addEventListener("click", function(event) {
+      var choice = event.target.closest(".rk-choice");
+      if (choice) {
+        rkSaveAnswer(choice.getAttribute("data-key"), choice.getAttribute("data-value"));
+        return;
+      }
+
+      if (event.target.closest("[data-rk-restart]")) {
+        rkRestartGuide();
+      }
+    });
+  
+  </script>
+</body>
+</html>
