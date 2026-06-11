@@ -140,6 +140,9 @@
       display: block;
       width: 100%;
       height: auto;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
     .rk-choice {
@@ -147,9 +150,14 @@
       top: 0;
       width: 50%;
       height: 100%;
+      z-index: 20;
       border: 0;
-      background: transparent;
+      background: rgba(255,255,255,0.001);
       cursor: pointer;
+      touch-action: manipulation;
+      -webkit-appearance: none;
+      appearance: none;
+      -webkit-tap-highlight-color: rgba(23,79,53,0.18);
     }
 
     .rk-choice:first-of-type {
@@ -2081,4 +2089,15 @@
         childList: true,
         subtree: true,
         attributes: true,
-        characterData
+        characterData: true
+      });
+    }
+
+    setInterval(function() {
+      rkQueueHeightUpdate();
+    }, 1500);
+
+    rkQueueHeightUpdate();
+  </script>
+</body>
+</html>
