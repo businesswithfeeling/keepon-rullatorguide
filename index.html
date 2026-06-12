@@ -327,21 +327,15 @@
     }
 
     .rk-mobile-restart {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      margin-top: 46px;
+      padding: 14px 12px 0;
+      border-top: 1px solid #e1e8dc;
+    }
+
+    .rk-mobile-restart .rk-button {
       width: 100%;
-      min-height: 40px;
-      margin-top: 32px;
-      padding: 9px 12px;
-      border: 1px solid #bfd6bd;
-      border-radius: 10px;
-      background: #fff;
-      color: var(--rk-green);
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.2;
-      cursor: pointer;
+      min-height: 48px;
+      border-radius: 8px;
     }
 
     .rk-choice {
@@ -941,7 +935,9 @@
             <div class="rk-mobile-journey-step" data-rk-journey-step="5"><span class="rk-mobile-journey-dot"></span><span>Paus</span></div>
             <div class="rk-mobile-journey-step" data-rk-journey-step="6"><span class="rk-mobile-journey-dot"></span><span>Stil</span></div>
           </div>
-          <button class="rk-mobile-restart" type="button" data-rk-restart="true">Börja om guiden</button>
+        </div>
+        <div class="rk-mobile-restart">
+          <button class="rk-button rk-button--secondary" type="button" data-rk-restart="true">Börja om guiden</button>
         </div>
       </div>
 
