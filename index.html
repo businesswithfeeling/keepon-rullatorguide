@@ -175,6 +175,12 @@
       background: rgba(255, 255, 255, 0.72);
     }
 
+    @media (max-width: 520px) {
+      .rk-mobile-profile {
+        min-height: 224px;
+      }
+    }
+
     .rk-mobile-profile-head {
       display: flex;
       align-items: center;
@@ -243,6 +249,25 @@
 
     .rk-mobile-choice.is-answered strong {
       color: var(--rk-deep);
+    }
+
+    .rk-mobile-tip {
+      margin-top: 10px;
+      padding: 10px 11px;
+      border-left: 4px solid #e0b84b;
+      border-radius: 10px;
+      background: rgba(255, 250, 240, 0.78);
+      color: #48564d;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .rk-mobile-tip strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--rk-deep);
+      font-size: 13px;
+      line-height: 1.25;
     }
 
     .rk-choice {
@@ -833,6 +858,7 @@
             <div class="rk-mobile-choice" data-rk-mobile-item="seat"><span>Paus</span><strong id="rk-mobile-seat">Inte valt</strong></div>
             <div class="rk-mobile-choice" data-rk-mobile-item="design"><span>Uttryck</span><strong id="rk-mobile-design">Inte valt</strong></div>
           </div>
+          <div class="rk-mobile-tip"><strong>Tips på vägen</strong><span id="rk-mobile-tip-text">Börja med platsen där rullatorn ska göra mest nytta.</span></div>
         </div>
       </div>
 
@@ -912,6 +938,14 @@
       seat: { no: "Ej viktigt", yes: "Viktigt" },
       design: { modern: "Modern", functional: "Funktion" }
     };
+    var rkMobileStepTips = {
+      1: "Börja med platsen där rullatorn ska göra mest nytta.",
+      2: "Låg vikt hjälper när rullatorn ska lyftas, stabilitet ger ofta en tryggare känsla.",
+      3: "Jämna underlag kräver mindre hjul. Ojämna gångar mår ofta bra av mer stabilitet.",
+      4: "Ska den ofta in i bilen blir vikt och hopfällning extra viktiga.",
+      5: "En sits kan göra promenaden friare om du vill kunna pausa när det passar.",
+      6: "Nu finjusterar vi känslan innan rekommendationen visas."
+    };
 
     function rkIsMobileCompanionView() {
       var viewportWidth = Math.min(
@@ -956,6 +990,9 @@
 
       var progressBar = document.getElementById("rk-mobile-progress-bar");
       if (progressBar) progressBar.style.width = Math.round((answeredCount / 6) * 100) + "%";
+
+      var tip = document.getElementById("rk-mobile-tip-text");
+      if (tip) tip.textContent = rkMobileStepTips[rkCurrentStep] || rkMobileStepTips[1];
     }
 
     var rkProducts = [
