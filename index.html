@@ -2004,6 +2004,8 @@
       var tags = product.tags || [];
       function has(tag) { return tags.indexOf(tag) > -1; }
 
+      if (rkIsTrustCare(product)) score += 6;
+
       if (rkAnswers.use === "inside") {
         if (has("inside")) score += 30;
         if (has("outside")) score -= 80;
@@ -2157,7 +2159,7 @@
 
       document.getElementById("rk-result-content").innerHTML =
         '<h3>Vi tror att dessa två rullatorer passar dig bäst</h3>' +
-        '<p class="rk-result-lead">Baserat på dina svar visar vi de två modeller som matchar bäst. Om två alternativ har exakt samma betyg och intern prioritet går Trust Care före.</p>' +
+        '<p class="rk-result-lead">Baserat på dina svar visar vi de två modeller som matchar bäst. När matchningen är jämn prioriterar vi Trust Care.</p>' +
         '<div class="rk-product-grid">' +
         primary.map(rkProductCard).join("") +
         '</div>' +
