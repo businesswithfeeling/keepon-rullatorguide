@@ -327,8 +327,9 @@
     }
 
     .rk-mobile-restart {
-      margin-top: 46px;
-      padding: 14px 12px 0;
+      min-height: 82px;
+      margin-top: 28px;
+      padding: 24px 12px 0;
       border-top: 1px solid #e1e8dc;
     }
 
@@ -336,6 +337,36 @@
       width: 100%;
       min-height: 48px;
       border-radius: 8px;
+    }
+
+    .rk-mobile-trust {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 26px;
+    }
+
+    .rk-mobile-trust-item {
+      min-height: 58px;
+      padding: 9px 10px;
+      border: 1px solid #e3e9dd;
+      border-radius: 10px;
+      background: rgba(247, 248, 243, 0.82);
+    }
+
+    .rk-mobile-trust-item strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--rk-deep);
+      font-size: 11px;
+      line-height: 1.2;
+    }
+
+    .rk-mobile-trust-item span {
+      display: block;
+      color: #56645c;
+      font-size: 10px;
+      line-height: 1.25;
     }
 
     .rk-choice {
@@ -935,6 +966,12 @@
             <div class="rk-mobile-journey-step" data-rk-journey-step="5"><span class="rk-mobile-journey-dot"></span><span>Paus</span></div>
             <div class="rk-mobile-journey-step" data-rk-journey-step="6"><span class="rk-mobile-journey-dot"></span><span>Stil</span></div>
           </div>
+        </div>
+        <div class="rk-mobile-trust" aria-label="Trygghet hos Keepon">
+          <div class="rk-mobile-trust-item"><strong>Prova innan du köper</strong><span>I vår butik i Lomma.</span></div>
+          <div class="rk-mobile-trust-item"><strong>Personlig rådgivning</strong><span>Vi hjälper dig hitta rätt.</span></div>
+          <div class="rk-mobile-trust-item"><strong>Hjälp efter köpet</strong><span>Service och reservdelar.</span></div>
+          <div class="rk-mobile-trust-item"><strong>Svenskt familjeföretag</strong><span>Med omtanke sedan 1999.</span></div>
         </div>
         <div class="rk-mobile-restart">
           <button class="rk-button rk-button--secondary" type="button" data-rk-restart="true">Börja om guiden</button>
