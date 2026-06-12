@@ -142,6 +142,125 @@
       height: auto;
     }
 
+    .rk-guide-companion {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+      gap: 18px;
+      max-width: 1120px;
+      margin: 18px auto 0;
+      align-items: stretch;
+    }
+
+    .rk-profile-panel,
+    .rk-tip-panel {
+      min-width: 0;
+      border: 1px solid var(--rk-line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 10px 24px rgba(23, 61, 43, 0.06);
+    }
+
+    .rk-profile-panel {
+      padding: 18px;
+    }
+
+    .rk-profile-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .rk-profile-heading h3,
+    .rk-tip-panel h3 {
+      margin: 0;
+      color: var(--rk-deep);
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .rk-profile-heading p {
+      margin: 4px 0 0;
+      color: #56645c;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .rk-profile-count {
+      flex: 0 0 auto;
+      min-width: 74px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #eef5ea;
+      color: var(--rk-green);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .rk-profile-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .rk-profile-item {
+      min-height: 72px;
+      padding: 11px 12px;
+      border: 1px solid #e6eadf;
+      border-radius: 12px;
+      background: #fbfcf7;
+    }
+
+    .rk-profile-item span {
+      display: block;
+      margin-bottom: 4px;
+      color: #6a756e;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .rk-profile-item strong {
+      display: block;
+      color: #8a948d;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .rk-profile-item.is-answered {
+      border-color: #bfd6bd;
+      background: #f4faf0;
+    }
+
+    .rk-profile-item.is-answered strong {
+      color: var(--rk-deep);
+    }
+
+    .rk-tip-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 18px 18px 18px 20px;
+      background: #fffaf0;
+    }
+
+    .rk-tip-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: #e0b84b;
+    }
+
+    .rk-tip-panel p {
+      margin: 8px 0 0;
+      color: #48564d;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
     .rk-choice {
       position: absolute;
       top: 0;
@@ -370,8 +489,20 @@
       .rk-step-card,
       .rk-result,
       .rk-product-card,
+      .rk-profile-panel,
+      .rk-tip-panel,
       .rk-panel {
         border-radius: 16px;
+      }
+
+      .rk-guide-companion {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .rk-profile-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .rk-result {
@@ -492,6 +623,29 @@
 
       .rk-product-card img {
         height: 170px;
+      }
+
+      .rk-profile-panel,
+      .rk-tip-panel {
+        padding: 14px;
+      }
+
+      .rk-profile-heading {
+        display: block;
+      }
+
+      .rk-profile-count {
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .rk-profile-item {
+        min-height: 64px;
+        padding: 9px 10px;
+      }
+
+      .rk-profile-item strong {
+        font-size: 13px;
       }
 
       .rk-product-card h4 {
@@ -715,6 +869,30 @@
         </div>
       </div>
 
+      <div id="rk-guide-companion" class="rk-guide-companion">
+        <div class="rk-profile-panel">
+          <div class="rk-profile-heading">
+            <div>
+              <h3>Din profil växer fram</h3>
+              <p id="rk-profile-summary">Svara steg för steg så bygger vi en rekommendation som passar din vardag.</p>
+            </div>
+            <div id="rk-profile-count" class="rk-profile-count">0 av 6</div>
+          </div>
+          <div class="rk-profile-list" aria-live="polite">
+            <div class="rk-profile-item" data-rk-profile-item="use"><span>Miljö</span><strong id="rk-profile-use">Inte valt än</strong></div>
+            <div class="rk-profile-item" data-rk-profile-item="priority"><span>Känsla</span><strong id="rk-profile-priority">Inte valt än</strong></div>
+            <div class="rk-profile-item" data-rk-profile-item="surface"><span>Underlag</span><strong id="rk-profile-surface">Inte valt än</strong></div>
+            <div class="rk-profile-item" data-rk-profile-item="car"><span>Transport</span><strong id="rk-profile-car">Inte valt än</strong></div>
+            <div class="rk-profile-item" data-rk-profile-item="seat"><span>Paus</span><strong id="rk-profile-seat">Inte valt än</strong></div>
+            <div class="rk-profile-item" data-rk-profile-item="design"><span>Uttryck</span><strong id="rk-profile-design">Inte valt än</strong></div>
+          </div>
+        </div>
+        <div class="rk-tip-panel">
+          <h3>Tips på vägen</h3>
+          <p id="rk-step-tip">Börja med platsen där rullatorn ska göra mest nytta. Hemma handlar det ofta om smidighet, ute mer om hjul och stabilitet.</p>
+        </div>
+      </div>
+
       <div id="rk-result" class="rk-result">
         <div id="rk-result-content"></div>
       </div>
@@ -782,6 +960,53 @@
 
     var rkAnswers = {};
     var rkCurrentStep = 1;
+    var rkProfileKeys = ["use", "priority", "surface", "car", "seat", "design"];
+    var rkProfileLabels = {
+      use: { inside: "Hemma", outside: "Utomhus" },
+      priority: { light: "Låg vikt", stable: "Extra stabilitet" },
+      surface: { smooth: "Jämnt underlag", rough: "Ojämnt underlag" },
+      car: { often: "Tas ofta med i bil", rarely: "Stannar oftast nära" },
+      seat: { no: "Sittpaus är inte viktigast", yes: "Sittpaus är viktig" },
+      design: { modern: "Modern design", functional: "Funktion först" }
+    };
+    var rkStepTips = {
+      1: "Börja med platsen där rullatorn ska göra mest nytta. Hemma handlar det ofta om smidighet, ute mer om hjul och stabilitet.",
+      2: "Låg vikt gör rullatorn enklare att lyfta och flytta. Extra stabilitet kan kännas tryggare om underlaget eller balansen varierar.",
+      3: "Jämna golv och trottoarer kräver mindre hjul. Grus, kullersten och ojämna gångar blir oftast behagligare med mer stabila hjul.",
+      4: "Om rullatorn ofta ska in i bilen är vikt och hopfällning viktiga detaljer. Ska den mest användas nära hemmet kan stabil känsla väga tyngre.",
+      5: "En sits kan göra promenaden friare om du vill kunna pausa när det passar. Om du sällan sitter kan en nättare modell kännas smidigare.",
+      6: "Nu finjusterar vi känslan. Välj modern design om uttrycket betyder mycket, eller funktion först om tydlighet och trygghet är viktigast."
+    };
+
+    function rkUpdateCompanion() {
+      var companion = document.getElementById("rk-guide-companion");
+      if (companion) companion.hidden = false;
+
+      var answeredCount = 0;
+      rkProfileKeys.forEach(function(key) {
+        var value = rkAnswers[key];
+        var text = value && rkProfileLabels[key] ? rkProfileLabels[key][value] : "";
+        var field = document.getElementById("rk-profile-" + key);
+        var item = document.querySelector('[data-rk-profile-item="' + key + '"]');
+
+        if (field) field.textContent = text || "Inte valt än";
+        if (item) item.classList.toggle("is-answered", !!text);
+        if (text) answeredCount++;
+      });
+
+      var count = document.getElementById("rk-profile-count");
+      if (count) count.textContent = answeredCount + " av 6";
+
+      var summary = document.getElementById("rk-profile-summary");
+      if (summary) {
+        summary.textContent = answeredCount === 0
+          ? "Svara steg för steg så bygger vi en rekommendation som passar din vardag."
+          : "Vi använder dina val för att väga samman smidighet, trygghet och vardagsanvändning.";
+      }
+
+      var tip = document.getElementById("rk-step-tip");
+      if (tip) tip.textContent = rkStepTips[rkCurrentStep] || rkStepTips[1];
+    }
 
     var rkProducts = [
       {
@@ -1984,6 +2209,8 @@
       var progress = document.getElementById("rk-progress");
       if (progress) progress.innerText = "Steg " + stepNumber + " av 6";
 
+      rkUpdateCompanion();
+
       var guide = document.getElementById("rk-guide");
       if (guide) guide.scrollIntoView({ behavior: "smooth", block: "start" });
       rkQueueHeightUpdate();
@@ -2132,6 +2359,9 @@
       var result = document.getElementById("rk-result");
       if (result) result.style.display = "block";
 
+      var companion = document.getElementById("rk-guide-companion");
+      if (companion) companion.hidden = true;
+
       var progress = document.getElementById("rk-progress");
       if (progress) progress.innerText = "Din rekommendation";
 
@@ -2196,6 +2426,26 @@
     }
 
     var rkChoiceLastActivated = 0;
+    var rkChoiceTouch = {
+      active: false,
+      moved: false,
+      multi: false,
+      startX: 0,
+      startY: 0,
+      ignoreClickUntil: 0
+    };
+
+    function rkNow() {
+      return Date.now ? Date.now() : new Date().getTime();
+    }
+
+    function rkIgnoreNextChoiceClick() {
+      rkChoiceTouch.ignoreClickUntil = rkNow() + 500;
+    }
+
+    function rkShouldIgnoreChoiceClick() {
+      return rkNow() < rkChoiceTouch.ignoreClickUntil;
+    }
 
     function rkActivateChoice(choice) {
       if (!choice) return;
@@ -2211,19 +2461,55 @@
         if (choice.getAttribute("data-rk-bound") === "true") return;
         choice.setAttribute("data-rk-bound", "true");
 
+        choice.addEventListener("touchstart", function(event) {
+          if (event.touches.length !== 1) {
+            rkChoiceTouch.multi = true;
+            rkIgnoreNextChoiceClick();
+            return;
+          }
+
+          rkChoiceTouch.active = true;
+          rkChoiceTouch.moved = false;
+          rkChoiceTouch.multi = false;
+          rkChoiceTouch.startX = event.touches[0].clientX;
+          rkChoiceTouch.startY = event.touches[0].clientY;
+        }, { passive: true });
+
+        choice.addEventListener("touchmove", function(event) {
+          if (!rkChoiceTouch.active) return;
+          if (event.touches.length !== 1) {
+            rkChoiceTouch.multi = true;
+            rkIgnoreNextChoiceClick();
+            return;
+          }
+
+          var deltaX = Math.abs(event.touches[0].clientX - rkChoiceTouch.startX);
+          var deltaY = Math.abs(event.touches[0].clientY - rkChoiceTouch.startY);
+          if (deltaX > 12 || deltaY > 12) {
+            rkChoiceTouch.moved = true;
+            rkIgnoreNextChoiceClick();
+          }
+        }, { passive: true });
+
+        choice.addEventListener("touchcancel", function() {
+          rkChoiceTouch.active = false;
+          rkIgnoreNextChoiceClick();
+        }, { passive: true });
+
+        choice.addEventListener("touchend", function() {
+          if (rkChoiceTouch.multi || rkChoiceTouch.moved) {
+            rkIgnoreNextChoiceClick();
+          }
+          rkChoiceTouch.active = false;
+        }, { passive: true });
+
         choice.addEventListener("click", function(event) {
-          event.preventDefault();
-          event.stopPropagation();
-          rkActivateChoice(choice);
-        });
+          if (rkShouldIgnoreChoiceClick()) {
+            event.preventDefault();
+            event.stopPropagation();
+            return;
+          }
 
-        choice.addEventListener("touchend", function(event) {
-          event.preventDefault();
-          event.stopPropagation();
-          rkActivateChoice(choice);
-        }, { passive: false });
-
-        choice.addEventListener("pointerup", function(event) {
           event.preventDefault();
           event.stopPropagation();
           rkActivateChoice(choice);
@@ -2234,6 +2520,11 @@
     document.addEventListener("click", function(event) {
       var choice = event.target.closest(".rk-choice");
       if (choice) {
+        if (rkShouldIgnoreChoiceClick()) {
+          event.preventDefault();
+          return;
+        }
+
         rkActivateChoice(choice);
         return;
       }
@@ -2258,6 +2549,7 @@
 
     document.addEventListener("DOMContentLoaded", function() {
       rkBindChoiceButtons();
+      rkUpdateCompanion();
       rkQueueHeightUpdate();
 
       var images = document.querySelectorAll("img");
@@ -2270,6 +2562,7 @@
     });
 
     rkBindChoiceButtons();
+    rkUpdateCompanion();
 
     if ("ResizeObserver" in window) {
       var rkResizeObserver = new ResizeObserver(function() {
