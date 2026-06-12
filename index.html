@@ -914,8 +914,12 @@
     };
 
     function rkIsMobileCompanionView() {
-      if (!window.matchMedia) return false;
-      return window.matchMedia("(max-width: 520px) and (hover: none) and (pointer: coarse)").matches;
+      var viewportWidth = Math.min(
+        window.innerWidth || 9999,
+        document.documentElement ? document.documentElement.clientWidth || 9999 : 9999
+      );
+      var screenWidth = window.screen ? Math.min(window.screen.width || 9999, window.screen.height || 9999) : viewportWidth;
+      return viewportWidth <= 700 && screenWidth <= 700;
     }
 
     function rkSetMobileCompanionVisible(visible) {
