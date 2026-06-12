@@ -332,7 +332,7 @@
       justify-content: center;
       width: 100%;
       min-height: 40px;
-      margin-top: 12px;
+      margin-top: 32px;
       padding: 9px 12px;
       border: 1px solid #bfd6bd;
       border-radius: 10px;
@@ -969,7 +969,7 @@
       var result = document.getElementById("rk-result");
       var resultIsVisible = !!(result && result.style.display === "block");
       var safetySpace = resultIsVisible
-        ? (window.innerWidth <= 700 ? 120 : 48)
+        ? (window.innerWidth <= 700 ? 220 : 48)
         : (window.innerWidth <= 700 ? 8 : 12);
 
       // Mät bara guidens faktiska innehåll. body/document scrollHeight kan fastna på en tidigare iframe-höjd i NXT.
