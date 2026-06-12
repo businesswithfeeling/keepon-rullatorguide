@@ -177,7 +177,7 @@
 
     @media (max-width: 520px) {
       .rk-mobile-profile {
-        min-height: 300px;
+        min-height: 260px;
       }
     }
 
@@ -280,9 +280,9 @@
       position: relative;
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 4px;
-      margin-top: 12px;
-      padding: 14px 4px 0;
+      gap: 3px;
+      margin-top: 8px;
+      padding: 9px 2px 0;
     }
 
     .rk-mobile-journey::before {
@@ -290,7 +290,7 @@
       position: absolute;
       left: 8%;
       right: 8%;
-      top: 23px;
+      top: 17px;
       height: 2px;
       border-radius: 999px;
       background: #dce6d8;
@@ -301,17 +301,17 @@
       z-index: 1;
       display: grid;
       justify-items: center;
-      gap: 5px;
+      gap: 3px;
       color: #718077;
-      font-size: 9px;
+      font-size: 8px;
       font-weight: 700;
       line-height: 1.1;
       text-align: center;
     }
 
     .rk-mobile-journey-dot {
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
       border: 2px solid #dce6d8;
       border-radius: 999px;
       background: #fbfcf7;
@@ -1061,7 +1061,7 @@
 
       for (var stepIndex = 1; stepIndex <= 6; stepIndex++) {
         var journeyStep = document.querySelector('[data-rk-journey-step="' + stepIndex + '"]');
-        if (journeyStep) journeyStep.classList.toggle("is-active", stepIndex <= Math.max(answeredCount, rkCurrentStep));
+        if (journeyStep) journeyStep.classList.toggle("is-active", stepIndex <= Math.max(answeredCount, rkCurrentStep - 1));
       }
     }
 
