@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rullatorguiden | Keepon v17</title>
+  <title>Rullatorguiden | Keepon v21</title>
   <meta name="robots" content="noindex, nofollow">
   <style>
     :root {
@@ -208,6 +208,8 @@
     }
 
     .rk-product-card {
+      display: flex;
+      flex-direction: column;
       padding: 22px;
       border: 1px solid #dfe8e2;
       border-radius: 22px;
@@ -235,55 +237,17 @@
       padding-left: 20px;
     }
 
+    .rk-product-card .rk-button {
+      align-self: flex-start;
+      margin-top: auto;
+    }
+
     .rk-advice {
       margin-top: 22px;
       padding: 18px;
       border-left: 5px solid var(--rk-green);
       border-radius: 14px;
       background: #eef6f0;
-    }
-
-
-    .rk-contact-reveal {
-      display: none;
-      max-width: 420px;
-      margin: 16px auto 0;
-      padding: 18px 20px;
-      border: 1px solid #dfe8e2;
-      border-radius: 16px;
-      background: #eef6f0;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-    }
-
-    .rk-contact-reveal strong {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--rk-deep);
-      font-size: 20px;
-      line-height: 1.25;
-    }
-
-    .rk-contact-reveal span {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--rk-text);
-      font-size: 15px;
-    }
-
-    .rk-contact-reveal a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 11px 18px;
-      border-radius: 10px;
-      border: 2px solid var(--rk-green);
-      background: #fff;
-      color: var(--rk-green);
-      font-size: 18px;
-      font-weight: 700;
-      text-decoration: none;
     }
 
     .rk-result-actions {
@@ -459,7 +423,7 @@
     }
 
     #rk-page {
-      padding: 0 14px 6px;
+      padding: 0 14px 0;
     }
 
     .rk-guide {
@@ -485,7 +449,7 @@
 
     @media (max-width: 520px) {
       #rk-page {
-        padding: 0 8px 6px;
+        padding: 0 8px 0;
       }
 
       .rk-guide {
@@ -574,6 +538,126 @@
       background: #fffdf8;
     }
 
+
+    /* Compact result mode for fixed-height NXT iframe embeds */
+    .rk-result {
+      padding: 20px 20px 16px;
+    }
+
+    .rk-result h3 {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .rk-result-lead {
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    .rk-product-grid {
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .rk-product-card {
+      padding: 16px;
+    }
+
+    .rk-product-card img {
+      height: 150px;
+      margin-bottom: 12px;
+    }
+
+    .rk-product-card h4 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .rk-product-card p {
+      margin: 0 0 8px;
+    }
+
+    .rk-product-card ul {
+      margin: 6px 0 12px;
+      padding-left: 18px;
+      font-size: 13px;
+      line-height: 1.32;
+    }
+
+    .rk-product-card .rk-button {
+      min-height: 46px;
+      padding: 11px 18px;
+    }
+
+    .rk-advice {
+      margin-top: 12px;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    .rk-result-actions {
+      margin-top: 12px;
+    }
+
+    @media (max-width: 520px) {
+      .rk-result {
+        padding: 12px 8px 10px;
+      }
+
+      .rk-result .rk-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .rk-result .rk-product-card {
+        padding: 10px;
+      }
+
+      .rk-product-card img {
+        height: 128px;
+      }
+
+      .rk-result .rk-product-card img {
+        height: 82px;
+        margin-bottom: 8px;
+      }
+
+      .rk-result .rk-product-card h4 {
+        font-size: 14px;
+        line-height: 1.2;
+      }
+
+      .rk-result .rk-product-card p {
+        font-size: 13px;
+        margin-bottom: 6px;
+      }
+
+      .rk-result .rk-product-card ul {
+        margin: 5px 0 8px;
+        padding-left: 15px;
+        font-size: 11px;
+        line-height: 1.28;
+      }
+
+      .rk-result .rk-product-card .rk-button {
+        min-height: 40px;
+        padding: 9px 8px;
+        font-size: 13px;
+      }
+
+      .rk-result .rk-advice {
+        margin-top: 8px;
+        padding: 10px;
+      }
+
+      .rk-result .rk-result-actions {
+        gap: 6px;
+      }
+
+      .rk-product-card {
+        padding: 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -652,6 +736,11 @@
       var guideMarginBottom = parseFloat(guideStyles.marginBottom) || 0;
       var pageTop = page ? page.getBoundingClientRect().top : 0;
       var guideTop = guideRect.top - pageTop;
+      var result = document.getElementById("rk-result");
+      var resultIsVisible = !!(result && result.style.display === "block");
+      var safetySpace = resultIsVisible
+        ? (window.innerWidth <= 700 ? 12 : 16)
+        : (window.innerWidth <= 700 ? 8 : 12);
 
       // Mät bara guidens faktiska innehåll. body/document scrollHeight kan fastna på en tidigare iframe-höjd i NXT.
       var height = Math.ceil(
@@ -661,7 +750,7 @@
         guideMarginTop +
         guideRect.height +
         guideMarginBottom +
-        8
+        safetySpace
       );
 
       if (height < 120) height = 120;
@@ -2072,16 +2161,10 @@
         '<div class="rk-product-grid">' +
         primary.map(rkProductCard).join("") +
         '</div>' +
-        '<div class="rk-advice"><strong>Vill du vara helt säker?</strong><br>Kom gärna in till Keepon och prova rullatorn. Vid Parkinson, gångträning, rullstolskombination eller mycket specifika behov rekommenderar vi personlig rådgivning.</div>' +
+        '<div class="rk-advice"><strong>Vill du vara helt säker?</strong><br>Kontakta oss så hjälper vi dig.</div>' +
         '<div class="rk-result-actions">' +
         '<a class="rk-button" href="https://keepon.se/kategori/rullator-ganghjalpmedel" target="_top">Se alla rullatorer</a>' +
-        '<button class="rk-button rk-button--secondary" type="button" data-rk-help="true">Få personlig hjälp</button>' +
         '<button class="rk-button rk-button--secondary" type="button" data-rk-restart="true">Gör guiden igen</button>' +
-        '</div>' +
-        '<div id="rk-help-contact" class="rk-contact-reveal" hidden>' +
-          '<strong>Kundservice</strong>' +
-          '<span>Kontakta oss</span>' +
-          '<a href="tel:0102630045">Telefon: 010-263 00 45</a>' +
         '</div>';
 
       var guide = document.getElementById("rk-guide");
@@ -2103,17 +2186,6 @@
           '<a class="rk-button" href="' + product.link + '" target="_top">Se produkt</a>' +
         '</article>'
       );
-    }
-
-
-    function rkShowHelpContact() {
-      var contact = document.getElementById("rk-help-contact");
-      if (!contact) return;
-
-      contact.hidden = false;
-      contact.style.display = "block";
-      contact.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      rkQueueHeightUpdate();
     }
 
     function rkRestartGuide() {
@@ -2161,11 +2233,6 @@
       var choice = event.target.closest(".rk-choice");
       if (choice) {
         rkActivateChoice(choice);
-        return;
-      }
-
-      if (event.target.closest("[data-rk-help]")) {
-        rkShowHelpContact();
         return;
       }
 
@@ -2229,6 +2296,9 @@
   </script>
 </body>
 </html>
+
+
+
 
 
 
