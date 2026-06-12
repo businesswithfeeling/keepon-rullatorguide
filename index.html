@@ -177,7 +177,7 @@
 
     @media (max-width: 520px) {
       .rk-mobile-profile {
-        min-height: 224px;
+        min-height: 300px;
       }
     }
 
@@ -251,23 +251,79 @@
       color: var(--rk-deep);
     }
 
-    .rk-mobile-tip {
+    .rk-mobile-summary {
       margin-top: 10px;
-      padding: 10px 11px;
-      border-left: 4px solid #e0b84b;
+      padding: 9px 10px;
+      border: 1px solid #e3e9dd;
       border-radius: 10px;
-      background: rgba(255, 250, 240, 0.78);
+      background: rgba(248, 250, 244, 0.82);
       color: #48564d;
       font-size: 12px;
-      line-height: 1.35;
+      line-height: 1.3;
     }
 
-    .rk-mobile-tip strong {
+    @media (max-width: 520px) {
+      .rk-mobile-summary {
+        min-height: 44px;
+      }
+    }
+
+    .rk-mobile-summary strong {
       display: block;
       margin-bottom: 3px;
       color: var(--rk-deep);
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.25;
+    }
+
+    .rk-mobile-journey {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 4px;
+      margin-top: 12px;
+      padding: 14px 4px 0;
+    }
+
+    .rk-mobile-journey::before {
+      content: "";
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 23px;
+      height: 2px;
+      border-radius: 999px;
+      background: #dce6d8;
+    }
+
+    .rk-mobile-journey-step {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      justify-items: center;
+      gap: 5px;
+      color: #718077;
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .rk-mobile-journey-dot {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #dce6d8;
+      border-radius: 999px;
+      background: #fbfcf7;
+    }
+
+    .rk-mobile-journey-step.is-active {
+      color: var(--rk-green);
+    }
+
+    .rk-mobile-journey-step.is-active .rk-mobile-journey-dot {
+      border-color: var(--rk-green);
+      background: var(--rk-green);
     }
 
     .rk-choice {
@@ -858,7 +914,15 @@
             <div class="rk-mobile-choice" data-rk-mobile-item="seat"><span>Paus</span><strong id="rk-mobile-seat">Inte valt</strong></div>
             <div class="rk-mobile-choice" data-rk-mobile-item="design"><span>Uttryck</span><strong id="rk-mobile-design">Inte valt</strong></div>
           </div>
-          <div class="rk-mobile-tip"><strong>Tips på vägen</strong><span id="rk-mobile-tip-text">Börja med platsen där rullatorn ska göra mest nytta.</span></div>
+          <div class="rk-mobile-summary"><strong>Sammanfattning</strong><span id="rk-mobile-summary-text">Dina val samlas här medan guiden växer fram.</span></div>
+          <div class="rk-mobile-journey" aria-hidden="true">
+            <div class="rk-mobile-journey-step" data-rk-journey-step="1"><span class="rk-mobile-journey-dot"></span><span>Miljö</span></div>
+            <div class="rk-mobile-journey-step" data-rk-journey-step="2"><span class="rk-mobile-journey-dot"></span><span>Känsla</span></div>
+            <div class="rk-mobile-journey-step" data-rk-journey-step="3"><span class="rk-mobile-journey-dot"></span><span>Underlag</span></div>
+            <div class="rk-mobile-journey-step" data-rk-journey-step="4"><span class="rk-mobile-journey-dot"></span><span>Transport</span></div>
+            <div class="rk-mobile-journey-step" data-rk-journey-step="5"><span class="rk-mobile-journey-dot"></span><span>Paus</span></div>
+            <div class="rk-mobile-journey-step" data-rk-journey-step="6"><span class="rk-mobile-journey-dot"></span><span>Stil</span></div>
+          </div>
         </div>
       </div>
 
@@ -938,14 +1002,6 @@
       seat: { no: "Ej viktigt", yes: "Viktigt" },
       design: { modern: "Modern", functional: "Funktion" }
     };
-    var rkMobileStepTips = {
-      1: "Börja med platsen där rullatorn ska göra mest nytta.",
-      2: "Låg vikt hjälper när rullatorn ska lyftas, stabilitet ger ofta en tryggare känsla.",
-      3: "Jämna underlag kräver mindre hjul. Ojämna gångar mår ofta bra av mer stabilitet.",
-      4: "Ska den ofta in i bilen blir vikt och hopfällning extra viktiga.",
-      5: "En sits kan göra promenaden friare om du vill kunna pausa när det passar.",
-      6: "Nu finjusterar vi känslan innan rekommendationen visas."
-    };
 
     function rkIsMobileCompanionView() {
       var viewportWidth = Math.min(
@@ -991,8 +1047,22 @@
       var progressBar = document.getElementById("rk-mobile-progress-bar");
       if (progressBar) progressBar.style.width = Math.round((answeredCount / 6) * 100) + "%";
 
-      var tip = document.getElementById("rk-mobile-tip-text");
-      if (tip) tip.textContent = rkMobileStepTips[rkCurrentStep] || rkMobileStepTips[1];
+      var chosenTexts = rkMobileProfileKeys.map(function(key) {
+        var value = rkAnswers[key];
+        return value && rkMobileProfileLabels[key] ? rkMobileProfileLabels[key][value] : "";
+      }).filter(Boolean);
+
+      var summary = document.getElementById("rk-mobile-summary-text");
+      if (summary) {
+        summary.textContent = chosenTexts.length
+          ? "Du söker: " + chosenTexts.join(" · ")
+          : "Dina val samlas här medan guiden växer fram.";
+      }
+
+      for (var stepIndex = 1; stepIndex <= 6; stepIndex++) {
+        var journeyStep = document.querySelector('[data-rk-journey-step="' + stepIndex + '"]');
+        if (journeyStep) journeyStep.classList.toggle("is-active", stepIndex <= Math.max(answeredCount, rkCurrentStep));
+      }
     }
 
     var rkProducts = [
