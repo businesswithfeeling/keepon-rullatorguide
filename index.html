@@ -142,6 +142,109 @@
       height: auto;
     }
 
+    .rk-mobile-companion {
+      display: none !important;
+    }
+
+    .rk-mobile-companion[hidden] {
+      display: none !important;
+    }
+
+    .rk-mobile-progress {
+      height: 5px;
+      margin: 10px 0 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e1e8dc;
+    }
+
+    .rk-mobile-progress span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--rk-green);
+      transition: width 220ms ease;
+    }
+
+    .rk-mobile-profile {
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid var(--rk-line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .rk-mobile-profile-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .rk-mobile-profile-head strong {
+      color: var(--rk-deep);
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .rk-mobile-profile-head span {
+      flex: 0 0 auto;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #eef5ea;
+      color: var(--rk-green);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .rk-mobile-choice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .rk-mobile-choice {
+      min-height: 38px;
+      padding: 6px 7px;
+      border: 1px solid #e3e9dd;
+      border-radius: 9px;
+      background: rgba(248, 250, 244, 0.8);
+    }
+
+    .rk-mobile-choice span,
+    .rk-mobile-choice strong {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .rk-mobile-choice span {
+      color: #68756d;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .rk-mobile-choice strong {
+      margin-top: 2px;
+      color: #8a948d;
+      font-size: 10px;
+      line-height: 1.2;
+    }
+
+    .rk-mobile-choice.is-answered {
+      border-color: #bdd5b9;
+      background: #f3faef;
+    }
+
+    .rk-mobile-choice.is-answered strong {
+      color: var(--rk-deep);
+    }
+
     .rk-choice {
       position: absolute;
       top: 0;
@@ -715,6 +818,24 @@
         </div>
       </div>
 
+      <div id="rk-mobile-companion" class="rk-mobile-companion" hidden>
+        <div class="rk-mobile-profile">
+          <div class="rk-mobile-profile-head">
+            <strong>Dina val</strong>
+            <span id="rk-mobile-count">0 av 6</span>
+          </div>
+          <div class="rk-mobile-progress" aria-hidden="true"><span id="rk-mobile-progress-bar"></span></div>
+          <div class="rk-mobile-choice-grid" aria-live="polite">
+            <div class="rk-mobile-choice" data-rk-mobile-item="use"><span>Miljö</span><strong id="rk-mobile-use">Inte valt</strong></div>
+            <div class="rk-mobile-choice" data-rk-mobile-item="priority"><span>Känsla</span><strong id="rk-mobile-priority">Inte valt</strong></div>
+            <div class="rk-mobile-choice" data-rk-mobile-item="surface"><span>Underlag</span><strong id="rk-mobile-surface">Inte valt</strong></div>
+            <div class="rk-mobile-choice" data-rk-mobile-item="car"><span>Transport</span><strong id="rk-mobile-car">Inte valt</strong></div>
+            <div class="rk-mobile-choice" data-rk-mobile-item="seat"><span>Paus</span><strong id="rk-mobile-seat">Inte valt</strong></div>
+            <div class="rk-mobile-choice" data-rk-mobile-item="design"><span>Uttryck</span><strong id="rk-mobile-design">Inte valt</strong></div>
+          </div>
+        </div>
+      </div>
+
       <div id="rk-result" class="rk-result">
         <div id="rk-result-content"></div>
       </div>
@@ -782,6 +903,56 @@
 
     var rkAnswers = {};
     var rkCurrentStep = 1;
+    var rkMobileProfileKeys = ["use", "priority", "surface", "car", "seat", "design"];
+    var rkMobileProfileLabels = {
+      use: { inside: "Hemma", outside: "Utomhus" },
+      priority: { light: "Låg vikt", stable: "Stabilitet" },
+      surface: { smooth: "Jämnt", rough: "Ojämnt" },
+      car: { often: "Ofta bil", rarely: "Nära hemmet" },
+      seat: { no: "Ej viktigt", yes: "Viktigt" },
+      design: { modern: "Modern", functional: "Funktion" }
+    };
+
+    function rkIsMobileCompanionView() {
+      if (!window.matchMedia) return false;
+      return window.matchMedia("(max-width: 520px) and (hover: none) and (pointer: coarse)").matches;
+    }
+
+    function rkSetMobileCompanionVisible(visible) {
+      var companion = document.getElementById("rk-mobile-companion");
+      if (!companion) return;
+      companion.hidden = !visible;
+      companion.style.setProperty("display", visible ? "block" : "none", "important");
+    }
+
+    function rkUpdateMobileCompanion() {
+      var result = document.getElementById("rk-result");
+      var resultIsVisible = !!(result && result.style.display === "block");
+      if (resultIsVisible || !rkIsMobileCompanionView() || rkCurrentStep > 6) {
+        rkSetMobileCompanionVisible(false);
+        return;
+      }
+
+      rkSetMobileCompanionVisible(true);
+
+      var answeredCount = 0;
+      rkMobileProfileKeys.forEach(function(key) {
+        var value = rkAnswers[key];
+        var text = value && rkMobileProfileLabels[key] ? rkMobileProfileLabels[key][value] : "";
+        var field = document.getElementById("rk-mobile-" + key);
+        var item = document.querySelector('[data-rk-mobile-item="' + key + '"]');
+
+        if (field) field.textContent = text || "Inte valt";
+        if (item) item.classList.toggle("is-answered", !!text);
+        if (text) answeredCount++;
+      });
+
+      var count = document.getElementById("rk-mobile-count");
+      if (count) count.textContent = answeredCount + " av 6";
+
+      var progressBar = document.getElementById("rk-mobile-progress-bar");
+      if (progressBar) progressBar.style.width = Math.round((answeredCount / 6) * 100) + "%";
+    }
 
     var rkProducts = [
       {
@@ -1984,6 +2155,8 @@
       var progress = document.getElementById("rk-progress");
       if (progress) progress.innerText = "Steg " + stepNumber + " av 6";
 
+      rkUpdateMobileCompanion();
+
       var guide = document.getElementById("rk-guide");
       if (guide) guide.scrollIntoView({ behavior: "smooth", block: "start" });
       rkQueueHeightUpdate();
@@ -2131,6 +2304,8 @@
 
       var result = document.getElementById("rk-result");
       if (result) result.style.display = "block";
+
+      rkSetMobileCompanionVisible(false);
 
       var progress = document.getElementById("rk-progress");
       if (progress) progress.innerText = "Din rekommendation";
@@ -2310,15 +2485,18 @@
     });
 
     window.addEventListener("resize", function() {
+      rkUpdateMobileCompanion();
       rkQueueHeightUpdate();
     });
 
     window.addEventListener("orientationchange", function() {
+      rkUpdateMobileCompanion();
       rkQueueHeightUpdate();
     });
 
     document.addEventListener("DOMContentLoaded", function() {
       rkBindChoiceButtons();
+      rkUpdateMobileCompanion();
       rkQueueHeightUpdate();
 
       var images = document.querySelectorAll("img");
@@ -2331,6 +2509,7 @@
     });
 
     rkBindChoiceButtons();
+    rkUpdateMobileCompanion();
 
     if ("ResizeObserver" in window) {
       var rkResizeObserver = new ResizeObserver(function() {
