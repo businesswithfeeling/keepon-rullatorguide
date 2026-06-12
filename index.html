@@ -541,7 +541,7 @@
 
     /* Compact result mode for fixed-height NXT iframe embeds */
     .rk-result {
-      padding: 20px 20px 16px;
+      padding: 20px 20px 34px;
     }
 
     .rk-result h3 {
@@ -601,7 +601,7 @@
 
     @media (max-width: 520px) {
       .rk-result {
-        padding: 12px 8px 10px;
+        padding: 12px 8px 30px;
       }
 
       .rk-result .rk-product-grid {
@@ -739,7 +739,7 @@
       var result = document.getElementById("rk-result");
       var resultIsVisible = !!(result && result.style.display === "block");
       var safetySpace = resultIsVisible
-        ? (window.innerWidth <= 700 ? 12 : 16)
+        ? (window.innerWidth <= 700 ? 44 : 48)
         : (window.innerWidth <= 700 ? 8 : 12);
 
       // Mät bara guidens faktiska innehåll. body/document scrollHeight kan fastna på en tidigare iframe-höjd i NXT.
