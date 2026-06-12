@@ -144,81 +144,101 @@
 
     .rk-guide-companion {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
-      gap: 18px;
+      grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.6fr);
+      gap: 12px;
       max-width: 1120px;
-      margin: 18px auto 0;
+      margin: 12px auto 0;
       align-items: stretch;
+    }
+
+    .rk-guide-companion[hidden] {
+      display: none !important;
     }
 
     .rk-profile-panel,
     .rk-tip-panel {
       min-width: 0;
       border: 1px solid var(--rk-line);
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: 0 10px 24px rgba(23, 61, 43, 0.06);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.58);
     }
 
     .rk-profile-panel {
-      padding: 18px;
+      padding: 12px;
     }
 
     .rk-profile-heading {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 14px;
+      gap: 10px;
+      margin-bottom: 9px;
     }
 
     .rk-profile-heading h3,
     .rk-tip-panel h3 {
       margin: 0;
       color: var(--rk-deep);
-      font-size: 20px;
+      font-size: 15px;
       line-height: 1.25;
     }
 
     .rk-profile-heading p {
-      margin: 4px 0 0;
+      margin: 2px 0 0;
       color: #56645c;
-      font-size: 14px;
-      line-height: 1.4;
+      font-size: 12px;
+      line-height: 1.3;
     }
 
     .rk-profile-count {
       flex: 0 0 auto;
-      min-width: 74px;
-      padding: 7px 10px;
+      min-width: 58px;
+      padding: 5px 8px;
       border-radius: 999px;
       background: #eef5ea;
       color: var(--rk-green);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       line-height: 1;
       text-align: center;
     }
 
+    .rk-profile-progress {
+      height: 5px;
+      margin: 8px 0 10px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e6eadf;
+    }
+
+    .rk-profile-progress span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--rk-green);
+      transition: width 220ms ease;
+    }
+
     .rk-profile-list {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 6px;
     }
 
     .rk-profile-item {
-      min-height: 72px;
-      padding: 11px 12px;
+      min-height: 48px;
+      padding: 7px 8px;
       border: 1px solid #e6eadf;
-      border-radius: 12px;
-      background: #fbfcf7;
+      border-radius: 10px;
+      background: rgba(251, 252, 247, 0.68);
     }
 
     .rk-profile-item span {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       color: #6a756e;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 700;
       line-height: 1.2;
     }
@@ -226,7 +246,7 @@
     .rk-profile-item strong {
       display: block;
       color: #8a948d;
-      font-size: 14px;
+      font-size: 11px;
       line-height: 1.25;
     }
 
@@ -242,23 +262,23 @@
     .rk-tip-panel {
       position: relative;
       overflow: hidden;
-      padding: 18px 18px 18px 20px;
-      background: #fffaf0;
+      padding: 12px 12px 12px 15px;
+      background: rgba(255, 250, 240, 0.64);
     }
 
     .rk-tip-panel::before {
       content: "";
       position: absolute;
       inset: 0 auto 0 0;
-      width: 5px;
+      width: 4px;
       background: #e0b84b;
     }
 
     .rk-tip-panel p {
-      margin: 8px 0 0;
+      margin: 5px 0 0;
       color: #48564d;
-      font-size: 15px;
-      line-height: 1.45;
+      font-size: 12px;
+      line-height: 1.35;
     }
 
     .rk-choice {
@@ -497,12 +517,12 @@
 
       .rk-guide-companion {
         grid-template-columns: 1fr;
-        gap: 12px;
-        margin-top: 12px;
+        gap: 8px;
+        margin-top: 8px;
       }
 
       .rk-profile-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .rk-result {
@@ -627,25 +647,30 @@
 
       .rk-profile-panel,
       .rk-tip-panel {
-        padding: 14px;
+        padding: 10px;
       }
 
       .rk-profile-heading {
-        display: block;
+        display: flex;
+        margin-bottom: 7px;
       }
 
       .rk-profile-count {
-        display: inline-block;
-        margin-top: 10px;
+        margin-top: 0;
       }
 
       .rk-profile-item {
-        min-height: 64px;
-        padding: 9px 10px;
+        min-height: 42px;
+        padding: 6px 7px;
       }
 
       .rk-profile-item strong {
-        font-size: 13px;
+        font-size: 10px;
+      }
+
+      .rk-profile-heading p,
+      .rk-tip-panel p {
+        font-size: 11px;
       }
 
       .rk-product-card h4 {
@@ -878,6 +903,7 @@
             </div>
             <div id="rk-profile-count" class="rk-profile-count">0 av 6</div>
           </div>
+          <div class="rk-profile-progress" aria-hidden="true"><span id="rk-profile-progress-bar"></span></div>
           <div class="rk-profile-list" aria-live="polite">
             <div class="rk-profile-item" data-rk-profile-item="use"><span>Miljö</span><strong id="rk-profile-use">Inte valt än</strong></div>
             <div class="rk-profile-item" data-rk-profile-item="priority"><span>Känsla</span><strong id="rk-profile-priority">Inte valt än</strong></div>
@@ -980,7 +1006,10 @@
 
     function rkUpdateCompanion() {
       var companion = document.getElementById("rk-guide-companion");
-      if (companion) companion.hidden = false;
+      if (companion) {
+        companion.hidden = false;
+        companion.style.display = "";
+      }
 
       var answeredCount = 0;
       rkProfileKeys.forEach(function(key) {
@@ -996,6 +1025,9 @@
 
       var count = document.getElementById("rk-profile-count");
       if (count) count.textContent = answeredCount + " av 6";
+
+      var progressBar = document.getElementById("rk-profile-progress-bar");
+      if (progressBar) progressBar.style.width = Math.round((answeredCount / 6) * 100) + "%";
 
       var summary = document.getElementById("rk-profile-summary");
       if (summary) {
@@ -2360,7 +2392,10 @@
       if (result) result.style.display = "block";
 
       var companion = document.getElementById("rk-guide-companion");
-      if (companion) companion.hidden = true;
+      if (companion) {
+        companion.hidden = true;
+        companion.style.display = "none";
+      }
 
       var progress = document.getElementById("rk-progress");
       if (progress) progress.innerText = "Din rekommendation";
