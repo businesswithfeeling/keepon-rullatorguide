@@ -623,12 +623,12 @@
       }
 
       #rk-step1 .rk-step-card {
-        left: 50%;
-        width: 100vw;
-        max-width: none;
-        margin: 0;
+        left: auto;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
         border-radius: 12px;
-        transform: translateX(-50%);
+        transform: none;
       }
 
        #rk-step1 .rk-step-card img {
@@ -1043,9 +1043,9 @@
     @media (max-width: 520px) {
       #rk-step1 .rk-step-card img {
         width: 100% !important;
-        height: 255px !important;
+        height: auto !important;
         min-height: 0 !important;
-        object-fit: cover !important;
+        object-fit: contain !important;
         object-position: center top !important;
       }
       .rk-mobile-companion {
@@ -1221,6 +1221,47 @@
         font-size: 11px;
       }
     }
+    @media (max-width: 360px) {
+      .rk-step1-prompt {
+        margin: -2px 6px 6px !important;
+        padding: 0 4px !important;
+        overflow-wrap: anywhere !important;
+      }
+
+      .rk-step1-prompt strong {
+        font-size: 15px !important;
+        line-height: 1.15 !important;
+      }
+
+      .rk-step1-prompt span {
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+      }
+
+      .rk-result .rk-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 145px)) !important;
+        gap: 5px !important;
+        justify-content: center !important;
+      }
+
+      .rk-result .rk-product-card {
+        padding: 6px !important;
+      }
+
+      .rk-result .rk-product-card h4 {
+        font-size: 9px !important;
+      }
+
+      .rk-result .rk-product-card p,
+      .rk-result .rk-product-card ul {
+        font-size: 8px !important;
+      }
+
+      .rk-result .rk-product-card .rk-button {
+        font-size: 9px !important;
+        min-height: 30px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1234,7 +1275,7 @@
           <strong>Var använder du rullatorn mest?</strong>
           <span>Klicka på en bild nedan och välj det som passar dig bäst.</span>
         </div><div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTEuanBnIn0=" alt="Hemma eller utomhus">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTEuanBnIn0=?v=20260614-guide-images-2" alt="Hemma eller utomhus">
           <button class="rk-choice" type="button" data-key="use" data-value="inside" aria-label="Hemma"></button>
           <button class="rk-choice" type="button" data-key="use" data-value="outside" aria-label="Utomhus"></button>
         </div>
@@ -1242,7 +1283,7 @@
 
       <div id="rk-step2" class="rk-step" hidden>
         <div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTIuanBnIn0=" alt="Låg vikt eller extra stabilitet">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTIuanBnIn0=?v=20260614-guide-images-2" alt="Låg vikt eller extra stabilitet">
           <button class="rk-choice" type="button" data-key="priority" data-value="light" aria-label="Låg vikt"></button>
           <button class="rk-choice" type="button" data-key="priority" data-value="stable" aria-label="Extra stabilitet"></button>
         </div>
@@ -1250,7 +1291,7 @@
 
       <div id="rk-step3" class="rk-step" hidden>
         <div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTMuanBnIn0=" alt="Jämnt eller ojämnt underlag">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTMuanBnIn0=?v=20260614-guide-images-2" alt="Jämnt eller ojämnt underlag">
           <button class="rk-choice" type="button" data-key="surface" data-value="smooth" aria-label="Jämnt underlag"></button>
           <button class="rk-choice" type="button" data-key="surface" data-value="rough" aria-label="Ojämnt underlag"></button>
         </div>
@@ -1258,7 +1299,7 @@
 
       <div id="rk-step4" class="rk-step" hidden>
         <div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTQuanBnIn0=" alt="Ta med i bil eller använda i närområdet">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTQuanBnIn0=?v=20260614-guide-images-2" alt="Ta med i bil eller använda i närområdet">
           <button class="rk-choice" type="button" data-key="car" data-value="often" aria-label="Ja ofta"></button>
           <button class="rk-choice" type="button" data-key="car" data-value="rarely" aria-label="Sällan eller aldrig"></button>
         </div>
@@ -1266,7 +1307,7 @@
 
       <div id="rk-step5" class="rk-step" hidden>
         <div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTUuanBnIn0=" alt="Paus under promenaden">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTUuanBnIn0=?v=20260614-guide-images-2" alt="Paus under promenaden">
           <button class="rk-choice" type="button" data-key="seat" data-value="no" aria-label="Nej inte viktigt"></button>
           <button class="rk-choice" type="button" data-key="seat" data-value="yes" aria-label="Ja viktigt"></button>
         </div>
@@ -1274,7 +1315,7 @@
 
       <div id="rk-step6" class="rk-step" hidden>
         <div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTYuanBnIn0=" alt="Modern design eller funktion först">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTYuanBnIn0=?v=20260614-guide-images-2" alt="Modern design eller funktion först">
           <button class="rk-choice" type="button" data-key="design" data-value="modern" aria-label="Modern design"></button>
           <button class="rk-choice" type="button" data-key="design" data-value="functional" aria-label="Funktion först"></button>
         </div>
@@ -1324,8 +1365,8 @@
       var resultIsVisible = !!(result && result.style.display === "block");
       var compactMobileStep = !resultIsVisible && window.innerWidth <= 700;
       var safetySpace = resultIsVisible
-        ? (window.innerWidth <= 700 ? 28 : 44)
-        : (window.innerWidth <= 700 ? 6 : 16);
+        ? (window.innerWidth <= 700 ? 56 : 44)
+        : (window.innerWidth <= 700 ? 24 : 16);
 
       // Mät bara guidens faktiska innehåll. body/document scrollHeight kan fastna på en tidigare iframe-höjd i NXT.
       var measuredGuideHeight = guideRect.height;
@@ -3047,6 +3088,10 @@
   </script>
 </body>
 </html>
+
+
+
+
 
 
 
