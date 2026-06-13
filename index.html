@@ -633,8 +633,8 @@
 
       #rk-step1 .rk-step-card img {
         width: 100%;
-        min-height: 315px;
-        object-fit: cover;
+        min-height: 0;
+        object-fit: contain;
         object-position: center top;
         transform: none;
       }
@@ -969,8 +969,8 @@
       var resultIsVisible = !!(result && result.style.display === "block");
       var compactMobileStep = !resultIsVisible && window.innerWidth <= 700;
       var safetySpace = resultIsVisible
-        ? (window.innerWidth <= 700 ? 54 : 22)
-        : (window.innerWidth <= 700 ? 0 : 4);
+        ? (window.innerWidth <= 700 ? 58 : 26)
+        : (window.innerWidth <= 700 ? 8 : 10);
 
       // Mät bara guidens faktiska innehåll. body/document scrollHeight kan fastna på en tidigare iframe-höjd i NXT.
       var measuredGuideHeight = guideRect.height;
@@ -2690,6 +2690,10 @@
   </script>
 </body>
 </html>
+
+
+
+
 
 
 
