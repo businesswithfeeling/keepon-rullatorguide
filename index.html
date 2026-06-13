@@ -607,16 +607,16 @@
       .rk-step-card {
         left: 50%;
         width: 100vw;
-        height: min(380px, 98vw);
+        height: auto;
         max-width: none;
-        border-radius: 0;
+        border-radius: 12px;
         transform: translateX(-50%);
       }
 
       .rk-step-card img {
         width: 100%;
-        height: 100%;
-        min-height: 0;
+        height: auto;
+        min-height: 315px;
         object-fit: cover;
         object-position: center top;
         transform: none;
@@ -625,11 +625,17 @@
       #rk-step1 .rk-step-card {
         left: auto;
         width: calc(100% - 16px);
+        max-width: calc(100% - 16px);
         margin: 0 auto;
+        border-radius: 12px;
         transform: none;
       }
 
       #rk-step1 .rk-step-card img {
+        width: 100%;
+        min-height: 315px;
+        object-fit: cover;
+        object-position: center top;
         transform: none;
       }
 
@@ -986,7 +992,7 @@
           }
         }
 
-        measuredGuideHeight = Math.max(0, mobileContentBottom - guideRect.top + (parseFloat(guideStyles.paddingBottom) || 0));
+        measuredGuideHeight = Math.max(0, mobileContentBottom - guideRect.top);
       }
 
       var height = compactMobileStep
@@ -1025,6 +1031,13 @@
         setTimeout(rkSendHeightToParent, 180);
         setTimeout(rkSendHeightToParent, 360);
         setTimeout(rkSendHeightToParent, 800);
+      }
+    }
+
+    function rkBindGuideImageHeightUpdates() {
+      var guideImages = document.querySelectorAll(".rk-step-card img");
+      for (var i = 0; i < guideImages.length; i++) {
+        guideImages[i].addEventListener("load", rkQueueHeightUpdate);
       }
     }
 
