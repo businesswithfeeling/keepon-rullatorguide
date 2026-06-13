@@ -584,6 +584,10 @@
 
       .rk-guide {
         padding: 14px 0 6px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
       }
 
       .rk-guide h2 {
@@ -603,16 +607,27 @@
       .rk-step-card {
         left: 50%;
         width: 100vw;
+        height: min(380px, 98vw);
         max-width: none;
-        border-radius: 12px;
+        border-radius: 0;
         transform: translateX(-50%);
       }
 
       .rk-step-card img {
         width: 100%;
-        min-height: 315px;
+        height: 100%;
+        min-height: 0;
         object-fit: cover;
-        object-position: center top;
+        object-position: center center;
+        transform: scale(1.08);
+      }
+
+      #rk-step1 .rk-step-card {
+        width: calc(100vw - 16px);
+      }
+
+      #rk-step1 .rk-step-card img {
+        transform: scale(1.03);
       }
 
       .rk-mobile-companion {
@@ -948,12 +963,33 @@
         : (window.innerWidth <= 700 ? 0 : 4);
 
       // Mät bara guidens faktiska innehåll. body/document scrollHeight kan fastna på en tidigare iframe-höjd i NXT.
+      var measuredGuideHeight = guideRect.height;
+      if (!resultIsVisible && window.innerWidth <= 700) {
+        var contentBottom = guideRect.top;
+        var visibleStepCard = document.querySelector(".rk-step:not([hidden]) .rk-step-card");
+        var mobileCompanion = document.getElementById("rk-mobile-companion");
+        var measuredNodes = [
+          guide.querySelector("h2"),
+          document.getElementById("rk-progress"),
+          visibleStepCard,
+          mobileCompanion && !mobileCompanion.hidden ? mobileCompanion : null
+        ];
+
+        for (var m = 0; m < measuredNodes.length; m++) {
+          if (measuredNodes[m]) {
+            contentBottom = Math.max(contentBottom, measuredNodes[m].getBoundingClientRect().bottom);
+          }
+        }
+
+        measuredGuideHeight = Math.max(0, contentBottom - guideRect.top + (parseFloat(guideStyles.paddingBottom) || 0));
+      }
+
       var height = Math.ceil(
         pagePaddingTop +
         pagePaddingBottom +
         guideTop +
         guideMarginTop +
-        guideRect.height +
+        measuredGuideHeight +
         guideMarginBottom +
         safetySpace
       );
