@@ -633,12 +633,70 @@
 
        #rk-step1 .rk-step-card img {
         width: 100%;
-        height: 310px;
-        min-height: 310px;
+        height: auto;
+        min-height: 0;
         object-fit: contain;
         object-position: center top;
         background: #f7f4ee;
         transform: none;
+      }
+      .rk-mobile-companion {
+        padding: 0 6px !important;
+      }
+
+      .rk-mobile-profile {
+        margin-top: 4px !important;
+        padding: 6px 7px 5px !important;
+        border-radius: 10px !important;
+      }
+
+      .rk-mobile-profile-head {
+        margin-bottom: 4px !important;
+      }
+
+      .rk-mobile-profile-head strong {
+        font-size: 12px !important;
+      }
+
+      .rk-mobile-profile-head span {
+        padding: 3px 7px !important;
+        font-size: 10px !important;
+      }
+
+      .rk-mobile-progress {
+        display: block !important;
+        height: 4px !important;
+        margin-bottom: 5px !important;
+      }
+
+      .rk-mobile-summary {
+        display: block !important;
+        padding: 5px 7px !important;
+        font-size: 11px !important;
+        line-height: 1.25 !important;
+      }
+
+      .rk-mobile-summary strong {
+        font-size: 11px !important;
+        margin-bottom: 2px !important;
+      }
+
+      .rk-mobile-journey {
+        margin-top: 4px !important;
+        padding-top: 7px !important;
+      }
+
+      .rk-mobile-journey::before {
+        top: 13px !important;
+      }
+
+      .rk-mobile-journey-step {
+        font-size: 7px !important;
+      }
+
+      .rk-mobile-journey-dot {
+        width: 11px !important;
+        height: 11px !important;
       }
 
       .rk-mobile-companion {
@@ -972,10 +1030,68 @@
     /* Final mobile verification fixes */
     @media (max-width: 520px) {
       #rk-step1 .rk-step-card img {
-        height: 310px !important;
-        min-height: 310px !important;
+        height: auto !important;
+        min-height: 0 !important;
         object-fit: contain !important;
         object-position: center top !important;
+      }
+      .rk-mobile-companion {
+        padding: 0 6px !important;
+      }
+
+      .rk-mobile-profile {
+        margin-top: 4px !important;
+        padding: 6px 7px 5px !important;
+        border-radius: 10px !important;
+      }
+
+      .rk-mobile-profile-head {
+        margin-bottom: 4px !important;
+      }
+
+      .rk-mobile-profile-head strong {
+        font-size: 12px !important;
+      }
+
+      .rk-mobile-profile-head span {
+        padding: 3px 7px !important;
+        font-size: 10px !important;
+      }
+
+      .rk-mobile-progress {
+        display: block !important;
+        height: 4px !important;
+        margin-bottom: 5px !important;
+      }
+
+      .rk-mobile-summary {
+        display: block !important;
+        padding: 5px 7px !important;
+        font-size: 11px !important;
+        line-height: 1.25 !important;
+      }
+
+      .rk-mobile-summary strong {
+        font-size: 11px !important;
+        margin-bottom: 2px !important;
+      }
+
+      .rk-mobile-journey {
+        margin-top: 4px !important;
+        padding-top: 7px !important;
+      }
+
+      .rk-mobile-journey::before {
+        top: 13px !important;
+      }
+
+      .rk-mobile-journey-step {
+        font-size: 7px !important;
+      }
+
+      .rk-mobile-journey-dot {
+        width: 11px !important;
+        height: 11px !important;
       }
 
       .rk-result {
@@ -993,45 +1109,46 @@
       }
 
       .rk-result .rk-product-grid {
-        gap: 5px !important;
-        margin-top: 6px !important;
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+        margin-top: 8px !important;
       }
 
       .rk-result .rk-product-card {
-        padding: 6px !important;
-        border-radius: 9px !important;
+        padding: 8px !important;
+        border-radius: 10px !important;
       }
 
       .rk-result .rk-product-card img {
-        height: 34px !important;
-        margin-bottom: 4px !important;
+        height: 54px !important;
+        margin-bottom: 5px !important;
         border-radius: 7px !important;
       }
 
       .rk-result .rk-product-card h4 {
-        font-size: 10px !important;
-        line-height: 1.1 !important;
-        margin-bottom: 2px !important;
+        font-size: 12px !important;
+        line-height: 1.18 !important;
+        margin-bottom: 3px !important;
       }
 
       .rk-result .rk-product-card p {
-        font-size: 9px !important;
-        margin-bottom: 2px !important;
-        line-height: 1.1 !important;
+        font-size: 11px !important;
+        margin-bottom: 3px !important;
+        line-height: 1.2 !important;
       }
 
       .rk-result .rk-product-card ul {
         display: block !important;
-        margin: 2px 0 4px !important;
-        padding-left: 11px !important;
-        font-size: 8px !important;
-        line-height: 1.12 !important;
+        margin: 3px 0 5px !important;
+        padding-left: 15px !important;
+        font-size: 11px !important;
+        line-height: 1.25 !important;
       }
 
       .rk-result .rk-product-card .rk-button {
-        min-height: 28px !important;
-        padding: 5px 4px !important;
-        font-size: 9px !important;
+        min-height: 34px !important;
+        padding: 7px 8px !important;
+        font-size: 11px !important;
       }
 
       .rk-result .rk-advice {
@@ -1239,13 +1356,12 @@
     };
 
     function rkIsMobileCompanionView() {
-      return false;
       var viewportWidth = Math.min(
         window.innerWidth || 9999,
         document.documentElement ? document.documentElement.clientWidth || 9999 : 9999
       );
       var screenWidth = window.screen ? Math.min(window.screen.width || 9999, window.screen.height || 9999) : viewportWidth;
-      return viewportWidth <= 700 && screenWidth <= 700;
+      return viewportWidth <= 700;
     }
 
     function rkSetMobileCompanionVisible(visible) {
@@ -1282,7 +1398,7 @@
       var summary = document.getElementById("rk-mobile-summary-text");
       if (summary) {
         summary.textContent = chosenTexts.length
-          ? "Du söker: " + chosenTexts.join(" · ")
+          ? "Du söker: " + chosenTexts.join(" - ")
           : "Dina val samlas här medan guiden växer fram.";
       }
 
@@ -2876,6 +2992,11 @@
   </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
