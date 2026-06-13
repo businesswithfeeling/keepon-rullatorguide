@@ -623,19 +623,19 @@
       }
 
       #rk-step1 .rk-step-card {
-        left: auto;
-        width: calc(100% - 16px);
-        max-width: calc(100% - 16px);
-        margin: 0 auto;
+        left: 50%;
+        width: 100vw;
+        max-width: none;
+        margin: 0;
         border-radius: 12px;
-        transform: none;
+        transform: translateX(-50%);
       }
 
       #rk-step1 .rk-step-card img {
         width: 100%;
-        height: 292px;
-        min-height: 292px;
-        object-fit: contain;
+        height: 330px;
+        min-height: 330px;
+        object-fit: cover;
         object-position: center top;
         background: #f7f4ee;
         transform: none;
@@ -869,6 +869,24 @@
 
       .rk-product-card {
         padding: 12px;
+      }
+    }
+    /* Desktop crop control for steps 2-5 */
+    @media (min-width: 821px) {
+      #rk-step2 .rk-step-card,
+      #rk-step3 .rk-step-card,
+      #rk-step4 .rk-step-card,
+      #rk-step5 .rk-step-card {
+        max-height: 690px;
+      }
+
+      #rk-step2 .rk-step-card img,
+      #rk-step3 .rk-step-card img,
+      #rk-step4 .rk-step-card img,
+      #rk-step5 .rk-step-card img {
+        height: 690px;
+        object-fit: cover;
+        object-position: center top;
       }
     }
     /* Result fit for fixed NXT iframe */
@@ -2770,6 +2788,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
