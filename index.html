@@ -129,6 +129,28 @@
       text-align: center;
     }
 
+    .rk-step-question {
+      margin: -6px 0 18px;
+      text-align: center;
+    }
+
+    .rk-step-question strong {
+      display: block;
+      color: var(--rk-deep);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 4.2vw, 44px);
+      line-height: 1.12;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .rk-step-question span {
+      display: block;
+      color: #1f2523;
+      font-size: clamp(18px, 2.4vw, 28px);
+      line-height: 1.25;
+    }
+
     .rk-step-card {
       position: relative;
       width: 100%;
@@ -1198,8 +1220,12 @@
       <div id="rk-progress" class="rk-progress">Steg 1 av 6</div>
 
       <div id="rk-step1" class="rk-step">
+        <div class="rk-step-question" aria-label="Instruktion för steg 1">
+          <strong>Var använder du rullatorn mest?</strong>
+          <span>Klicka på en bild nedan och välj det som passar dig bäst.</span>
+        </div>
         <div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZSBtYWluLmpwZyJ9" alt="Hemma eller utomhus">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTEuanBnIn0=" alt="Hemma eller utomhus">
           <button class="rk-choice" type="button" data-key="use" data-value="inside" aria-label="Hemma"></button>
           <button class="rk-choice" type="button" data-key="use" data-value="outside" aria-label="Utomhus"></button>
         </div>
@@ -3012,42 +3038,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
