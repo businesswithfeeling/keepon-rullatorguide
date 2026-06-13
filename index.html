@@ -902,8 +902,8 @@
       var result = document.getElementById("rk-result");
       var resultIsVisible = !!(result && result.style.display === "block");
       var safetySpace = resultIsVisible
-        ? (window.innerWidth <= 700 ? 18 : 22)
-        : (window.innerWidth <= 700 ? 2 : 4);
+        ? (window.innerWidth <= 700 ? 54 : 22)
+        : (window.innerWidth <= 700 ? 0 : 4);
 
       // Mät bara guidens faktiska innehåll. body/document scrollHeight kan fastna på en tidigare iframe-höjd i NXT.
       var height = Math.ceil(
