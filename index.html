@@ -618,16 +618,19 @@
         height: 100%;
         min-height: 0;
         object-fit: cover;
-        object-position: center center;
-        transform: scale(1.08);
+        object-position: center top;
+        transform: none;
       }
 
       #rk-step1 .rk-step-card {
-        width: calc(100vw - 16px);
+        left: auto;
+        width: calc(100% - 16px);
+        margin: 0 auto;
+        transform: none;
       }
 
       #rk-step1 .rk-step-card img {
-        transform: scale(1.03);
+        transform: none;
       }
 
       .rk-mobile-companion {
@@ -958,14 +961,16 @@
       var guideTop = guideRect.top - pageTop;
       var result = document.getElementById("rk-result");
       var resultIsVisible = !!(result && result.style.display === "block");
+      var compactMobileStep = !resultIsVisible && window.innerWidth <= 700;
       var safetySpace = resultIsVisible
         ? (window.innerWidth <= 700 ? 54 : 22)
         : (window.innerWidth <= 700 ? 0 : 4);
 
       // Mät bara guidens faktiska innehåll. body/document scrollHeight kan fastna på en tidigare iframe-höjd i NXT.
       var measuredGuideHeight = guideRect.height;
-      if (!resultIsVisible && window.innerWidth <= 700) {
-        var contentBottom = guideRect.top;
+      var mobileContentBottom = 0;
+      if (compactMobileStep) {
+        mobileContentBottom = guideRect.top;
         var visibleStepCard = document.querySelector(".rk-step:not([hidden]) .rk-step-card");
         var mobileCompanion = document.getElementById("rk-mobile-companion");
         var measuredNodes = [
@@ -977,14 +982,16 @@
 
         for (var m = 0; m < measuredNodes.length; m++) {
           if (measuredNodes[m]) {
-            contentBottom = Math.max(contentBottom, measuredNodes[m].getBoundingClientRect().bottom);
+            mobileContentBottom = Math.max(mobileContentBottom, measuredNodes[m].getBoundingClientRect().bottom);
           }
         }
 
-        measuredGuideHeight = Math.max(0, contentBottom - guideRect.top + (parseFloat(guideStyles.paddingBottom) || 0));
+        measuredGuideHeight = Math.max(0, mobileContentBottom - guideRect.top + (parseFloat(guideStyles.paddingBottom) || 0));
       }
 
-      var height = Math.ceil(
+      var height = compactMobileStep
+        ? Math.ceil(mobileContentBottom - document.body.getBoundingClientRect().top)
+        : Math.ceil(
         pagePaddingTop +
         pagePaddingBottom +
         guideTop +
@@ -999,7 +1006,7 @@
       try {
         document.documentElement.style.minHeight = "0";
         document.body.style.minHeight = "0";
-        document.body.style.height = height + "px";
+        document.body.style.height = compactMobileStep ? "auto" : height + "px";
       } catch (e) {}
 
       try {
