@@ -129,30 +129,6 @@
       text-align: center;
     }
 
-
-    .rk-step-question {
-      margin: 0 0 14px;
-      color: var(--rk-deep);
-      text-align: center;
-    }
-
-    .rk-step-question strong {
-      display: block;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(30px, 4.6vw, 48px);
-      font-weight: 700;
-      line-height: 1.08;
-      letter-spacing: 0.04em;
-    }
-
-    .rk-step-question span {
-      display: block;
-      margin-top: 8px;
-      color: #1f2b25;
-      font-size: clamp(20px, 2.7vw, 31px);
-      line-height: 1.2;
-    }
-
     .rk-step-card {
       position: relative;
       width: 100%;
@@ -1213,6 +1189,38 @@
         font-size: 10px !important;
       }
     }
+    .rk-step1-prompt {
+      margin: -8px auto 12px;
+      color: var(--rk-deep);
+      text-align: center;
+    }
+
+    .rk-step1-prompt strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .rk-step1-prompt span {
+      display: block;
+      margin-top: 4px;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 520px) {
+      .rk-step1-prompt {
+        margin: -2px 8px 8px;
+      }
+
+      .rk-step1-prompt strong {
+        font-size: 18px;
+      }
+
+      .rk-step1-prompt span {
+        font-size: 11px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1222,11 +1230,10 @@
       <div id="rk-progress" class="rk-progress">Steg 1 av 6</div>
 
       <div id="rk-step1" class="rk-step">
-        <div class="rk-step-question" aria-label="Instruktion för steg 1">
+                <div class="rk-step1-prompt">
           <strong>Var använder du rullatorn mest?</strong>
           <span>Klicka på en bild nedan och välj det som passar dig bäst.</span>
-        </div>
-        <div class="rk-step-card">
+        </div><div class="rk-step-card">
           <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTEuanBnIn0=" alt="Hemma eller utomhus">
           <button class="rk-choice" type="button" data-key="use" data-value="inside" aria-label="Hemma"></button>
           <button class="rk-choice" type="button" data-key="use" data-value="outside" aria-label="Utomhus"></button>
@@ -3040,3 +3047,44 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
