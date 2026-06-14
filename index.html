@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rullatorguiden | Keepon v22 mobile-progress-fix</title>
+  <title>Rullatorguiden | Keepon v23 mobile-progress-top</title>
   <meta name="robots" content="noindex, nofollow">
   <style>
     :root {
@@ -1560,6 +1560,14 @@
     function rkSetMobileCompanionVisible(visible) {
       var companion = document.getElementById("rk-mobile-companion");
       if (!companion) return;
+      if (visible && rkIsMobileCompanionView()) {
+        var activeStep = document.querySelector(".rk-step:not([hidden])");
+        if (activeStep && companion.parentNode !== activeStep.parentNode) {
+          activeStep.parentNode.insertBefore(companion, activeStep);
+        } else if (activeStep && companion.nextElementSibling !== activeStep) {
+          activeStep.parentNode.insertBefore(companion, activeStep);
+        }
+      }
       companion.hidden = !visible;
       companion.style.setProperty("display", visible ? "block" : "none", "important");
     }
