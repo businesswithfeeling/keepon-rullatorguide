@@ -1264,6 +1264,75 @@
         min-height: 30px !important;
       }
     }
+  
+    /* Unified guide image presentation v5 */
+    .rk-guide {
+      padding: 18px 0 22px !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .rk-step-card {
+      width: 100% !important;
+      max-width: none !important;
+      overflow: hidden !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    #rk-step1 .rk-step-card,
+    #rk-step2 .rk-step-card,
+    #rk-step3 .rk-step-card,
+    #rk-step4 .rk-step-card,
+    #rk-step5 .rk-step-card,
+    #rk-step6 .rk-step-card {
+      left: auto !important;
+      margin: 0 auto !important;
+      transform: none !important;
+    }
+
+    #rk-step1 .rk-step-card img,
+    #rk-step2 .rk-step-card img,
+    #rk-step3 .rk-step-card img,
+    #rk-step4 .rk-step-card img,
+    #rk-step5 .rk-step-card img,
+    #rk-step6 .rk-step-card img {
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      object-fit: contain !important;
+      object-position: center top !important;
+      background: transparent !important;
+      transform: none !important;
+    }
+
+    @media (min-width: 821px) {
+      #rk-step1 .rk-step-card img,
+      #rk-step2 .rk-step-card img,
+      #rk-step3 .rk-step-card img,
+      #rk-step4 .rk-step-card img,
+      #rk-step5 .rk-step-card img,
+      #rk-step6 .rk-step-card img {
+        height: auto !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .rk-guide {
+        padding: 12px 0 6px !important;
+      }
+
+      .rk-step-card {
+        width: 100vw !important;
+        max-width: none !important;
+        margin-left: 50% !important;
+        transform: translateX(-50%) !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1277,7 +1346,7 @@
           <strong>Var använder du rullatorn mest?</strong>
           <span>Klicka på en bild nedan och välj det som passar dig bäst.</span>
         </div><div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTF1cC5qcGcifQ==?v=20260614-guide-images-4" alt="Hemma eller utomhus">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTF1cC5qcGcifQ==?v=20260614-guide-images-5" alt="Hemma eller utomhus">
           <button class="rk-choice" type="button" data-key="use" data-value="inside" aria-label="Hemma"></button>
           <button class="rk-choice" type="button" data-key="use" data-value="outside" aria-label="Utomhus"></button>
         </div>
@@ -1285,7 +1354,7 @@
 
       <div id="rk-step2" class="rk-step" hidden>
         <div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTIuanBnIn0=?v=20260614-guide-images-2" alt="Låg vikt eller extra stabilitet">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTIuanBnIn0=?v=20260614-guide-images-5" alt="Låg vikt eller extra stabilitet">
           <button class="rk-choice" type="button" data-key="priority" data-value="light" aria-label="Låg vikt"></button>
           <button class="rk-choice" type="button" data-key="priority" data-value="stable" aria-label="Extra stabilitet"></button>
         </div>
@@ -1293,7 +1362,7 @@
 
       <div id="rk-step3" class="rk-step" hidden>
         <div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTMuanBnIn0=?v=20260614-guide-images-2" alt="Jämnt eller ojämnt underlag">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTMuanBnIn0=?v=20260614-guide-images-5" alt="Jämnt eller ojämnt underlag">
           <button class="rk-choice" type="button" data-key="surface" data-value="smooth" aria-label="Jämnt underlag"></button>
           <button class="rk-choice" type="button" data-key="surface" data-value="rough" aria-label="Ojämnt underlag"></button>
         </div>
@@ -1301,7 +1370,7 @@
 
       <div id="rk-step4" class="rk-step" hidden>
         <div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTQuanBnIn0=?v=20260614-guide-images-2" alt="Ta med i bil eller använda i närområdet">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTQuanBnIn0=?v=20260614-guide-images-5" alt="Ta med i bil eller använda i närområdet">
           <button class="rk-choice" type="button" data-key="car" data-value="often" aria-label="Ja ofta"></button>
           <button class="rk-choice" type="button" data-key="car" data-value="rarely" aria-label="Sällan eller aldrig"></button>
         </div>
@@ -1309,7 +1378,7 @@
 
       <div id="rk-step5" class="rk-step" hidden>
         <div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTUuanBnIn0=?v=20260614-guide-images-2" alt="Paus under promenaden">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTUuanBnIn0=?v=20260614-guide-images-5" alt="Paus under promenaden">
           <button class="rk-choice" type="button" data-key="seat" data-value="no" aria-label="Nej inte viktigt"></button>
           <button class="rk-choice" type="button" data-key="seat" data-value="yes" aria-label="Ja viktigt"></button>
         </div>
@@ -1317,7 +1386,7 @@
 
       <div id="rk-step6" class="rk-step" hidden>
         <div class="rk-step-card">
-          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTZ1cC5qcGcifQ==?v=20260614-guide-images-4" alt="Modern design eller funktion först">
+          <img src="https://d10ujpxt0sdyrk.cloudfront.net/eyJidWNrZXQiOiJueHQtZm91bmRhdGlvbi1rZWVwb250ZXN0Iiwia2V5IjoiUnVsbGF0b3JndWlkZTZ1cC5qcGcifQ==?v=20260614-guide-images-5" alt="Modern design eller funktion först">
           <button class="rk-choice" type="button" data-key="design" data-value="modern" aria-label="Modern design"></button>
           <button class="rk-choice" type="button" data-key="design" data-value="functional" aria-label="Funktion först"></button>
         </div>
